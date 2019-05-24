@@ -90,6 +90,8 @@ dependencies {
     implementation 'com.grg:lib_faceSDK:1.0.0@aar'
     implementation 'com.grg:lib_auth:1.0.0@aar'
 
+    implementation 'org.greenrobot:eventbus:3.0.0'
+
     api rootProject.ext.dependencies.arouter_api
 
     annotationProcessor rootProject.ext.dependencies.arouter_compiler

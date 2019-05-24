@@ -73,5 +73,11 @@
         </exclusion>
       </exclusions>
     </dependency>
+    <dependency>
+      <groupId>org.greenrobot</groupId>
+      <artifactId>eventbus</artifactId>
+      <version>3.0.0</version>
+      <scope>compile</scope>
+    </dependency>
   </dependencies>
 </project>
