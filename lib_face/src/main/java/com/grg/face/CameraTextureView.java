@@ -11,19 +11,18 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.TextureView;
 
-
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 
 
-public class CameraTextureView1 extends TextureView {
+public class CameraTextureView extends TextureView {
 
     private boolean isRelease;
 
     public Camera mCamera;
 
-    public CameraTextureView1(Context context, AttributeSet attrs) {
+    public CameraTextureView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
