@@ -17,7 +17,7 @@ import com.aibee.auth.AibeeAuth;
 import java.io.File;
 import java.util.concurrent.ArrayBlockingQueue;
 
-public class CameraTextureViewWithFace extends RelativeLayout {
+public class CameraViewWithFace extends RelativeLayout {
 
     ShowFaceCallBack mShowFaceCallBack;
 
@@ -25,7 +25,7 @@ public class CameraTextureViewWithFace extends RelativeLayout {
 
     private final static int HIDE_FRAME = 2;
 
-    private static CameraTextureViewWithFace INSTANCE = null;
+    private static CameraViewWithFace INSTANCE = null;
 
     private ArrayBlockingQueue<YuvData> mNormalQueue = new ArrayBlockingQueue(3, true);
 
@@ -42,11 +42,11 @@ public class CameraTextureViewWithFace extends RelativeLayout {
 
     private final static String TAG = "CameraTextureWithFace";
 
-    public CameraTextureViewWithFace(Context context) {
+    public CameraViewWithFace(Context context) {
         this(context,null);
     }
 
-    public CameraTextureViewWithFace(Context context, AttributeSet attrs) {
+    public CameraViewWithFace(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         LayoutInflater.from(context).inflate(R.layout.camera_texture_withface, this, true);
