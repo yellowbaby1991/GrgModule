@@ -2,7 +2,7 @@ include ':app'
 
 include ':module_main'
 
-if(isNeedCardModule.toBoolean()){
+if(isNeedCardModule.toBoolean() || isCardModuleTest.toBoolean()){
     include ':module_idcard'
     if (isCardMax2.toBoolean()){
         include ':lib_idcard_max2'
@@ -12,7 +12,7 @@ if(isNeedCardModule.toBoolean()){
 
 }
 
-if(isNeedFaceModule.toBoolean()){
+if(isNeedFaceModule.toBoolean() || isFaceModuleTest.toBoolean()){
     include ':module_face'
     include ':lib_face'
 }

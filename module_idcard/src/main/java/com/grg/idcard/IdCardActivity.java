@@ -16,8 +16,13 @@ public class IdCardActivity extends AppCompatActivity {
 
     private IDCardCallback mIDCardCallback = new IDCardCallback() {
         @Override
-        public void getIDCardInfo(IDCardInfo idCard) {
-
+        public void getIDCardInfo(final IDCardInfo idCard) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(getApplicationContext(),idCard.getName(),Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     };
 
@@ -34,10 +39,12 @@ public class IdCardActivity extends AppCompatActivity {
 
         boolean idcard = IDCardManager.getInstance().connect();
 
-        if (idcard == true){
+        if (idcard){
             //初始化成功
             mIDCardRecognition = new IDCardRecognition(mIDCardCallback);
             mIDCardRecognition.start();
+        }else {
+            Toast.makeText(getApplicationContext(),"初始化失败",Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -1,4 +1,4 @@
-if (isFaceModule.toBoolean()) {
+if (isFaceModuleTest.toBoolean()) {
     apply plugin: 'com.android.application'
 } else {
     apply plugin: 'com.android.library'
@@ -23,7 +23,7 @@ android {
 
     sourceSets {
         main {
-            if (isFaceModule.toBoolean()) {
+            if (isFaceModuleTest.toBoolean()) {
                 manifest.srcFile 'src/main/module/AndroidManifest.xml'
             } else {
                 manifest.srcFile 'src/main/AndroidManifest.xml'
