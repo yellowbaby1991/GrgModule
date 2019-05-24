@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.grg.face">
+
+    <application>
+        <activity
+            android:name=".FaceActivity"
+            android:screenOrientation="landscape" />
+    </application>
+
+</manifest>

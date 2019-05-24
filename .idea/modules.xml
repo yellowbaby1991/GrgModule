@@ -6,6 +6,9 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib_common/lib_common.iml" filepath="$PROJECT_DIR$/lib_common/lib_common.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib_face/lib_face.iml" filepath="$PROJECT_DIR$/lib_face/lib_face.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib_idcard_max2/lib_idcard_max2.iml" filepath="$PROJECT_DIR$/lib_idcard_max2/lib_idcard_max2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module_face/module_face.iml" filepath="$PROJECT_DIR$/module_face/module_face.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module_idcard/module_idcard.iml" filepath="$PROJECT_DIR$/module_idcard/module_idcard.iml" />
       <module fileurl="file://$PROJECT_DIR$/module_main/module_main.iml" filepath="$PROJECT_DIR$/module_main/module_main.iml" />
     </modules>
   </component>

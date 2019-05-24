@@ -1,4 +1,4 @@
-include ':app', ':lib_face'
+include ':app'
 
 include ':module_main'
 
@@ -10,6 +10,11 @@ if(isNeedCardModule.toBoolean()){
         include ':lib_idcard_max1'
     }
 
+}
+
+if(isNeedFaceModule.toBoolean()){
+    include ':module_face'
+    include ':lib_face'
 }
 
 include ':lib_common'

@@ -1,11 +1,14 @@
-apply plugin: 'com.android.application'
+if (isFaceModule.toBoolean()) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
 
 android {
 
     compileSdkVersion rootProject.ext.android.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.grg"
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode rootProject.ext.android.versionCode
@@ -17,26 +20,34 @@ android {
         }
         multiDexEnabled true
     }
+
+    sourceSets {
+        main {
+            if (isFaceModule.toBoolean()) {
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                //集成开发模式下排除debug文件夹中的所有Java文件
+                java {
+                    exclude 'debug/**'
+                }
+            }
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    //implementation 'com.yb:lib_common:1.0.0'
     implementation project(':lib_common')
-    if(!isMainModule.toBoolean()){
-        implementation project(':module_main')
-    }
-    if(isNeedCardModule.toBoolean()){
-        implementation project(':module_idcard')
-    }
-    if(isNeedFaceModule.toBoolean()){
-        implementation project(':module_face')
-    }
+    implementation project(':lib_face')
+
     annotationProcessor rootProject.ext.dependencies.arouter_compiler
 }

@@ -25,4 +25,12 @@ public class MainActivity extends AppCompatActivity {
                 .navigation();
 
     }
+
+    public void face(View view){
+
+        ARouter.getInstance().
+                build("/face/activity")
+                .navigation();
+
+    }
 }
