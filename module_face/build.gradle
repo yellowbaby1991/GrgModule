@@ -55,6 +55,7 @@ repositories {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':lib_face')
+    //implementation 'com.grg:lib_face:1.0.0'
     implementation project(':lib_common')
 
     annotationProcessor rootProject.ext.dependencies.arouter_compiler

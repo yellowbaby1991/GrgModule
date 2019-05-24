@@ -21,7 +21,7 @@ allprojects {
         google()
         jcenter()
         //maven { url 'http://localhost:8081/repository/maven-public/' }
-        maven { url 'https://raw.githubusercontent.com/yellowbaby1991/LibCommon/master' }
+        maven { url 'https://raw.githubusercontent.com/yellowbaby1991/GrgModule/master' }
     }
 }
 
