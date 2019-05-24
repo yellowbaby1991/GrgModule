@@ -42,12 +42,18 @@ android {
         }
     }
 
+    repositories {
+        flatDir {
+            dirs 'libs', '../lib_face/libs'
+        }
+    }
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':lib_common')
     implementation project(':lib_face')
+    implementation project(':lib_common')
 
     annotationProcessor rootProject.ext.dependencies.arouter_compiler
 }

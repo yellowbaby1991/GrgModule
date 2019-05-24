@@ -19,6 +19,12 @@ android {
         multiDexEnabled true
     }
 
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -78,7 +84,11 @@ dependencies {
         exclude module: "support-annotations"
     }
 
+    api(name: 'faceSDK-release', ext: 'aar')
+    api(name: 'auth-release', ext: 'aar')
+
     api rootProject.ext.dependencies.arouter_api
 
     annotationProcessor rootProject.ext.dependencies.arouter_compiler
+
 }
