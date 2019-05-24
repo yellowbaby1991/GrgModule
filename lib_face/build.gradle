@@ -23,7 +23,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -86,7 +86,8 @@ dependencies {
         exclude module: "support-annotations"
     }
 
-    api(name: 'faceSDK-release', ext: 'aar')
+    //api(name: 'faceSDK-release', ext: 'aar')
+    implementation 'com.grg:lib_faceSDK:1.0.0@aar'
     implementation 'com.grg:lib_auth:1.0.0@aar'
 
     api rootProject.ext.dependencies.arouter_api
