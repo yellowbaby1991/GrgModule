@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven'
+
 //apply from: 'upload.gradle'  用于局域网maven
 
 android {
@@ -86,7 +87,7 @@ dependencies {
     }
 
     api(name: 'faceSDK-release', ext: 'aar')
-    api(name: 'auth-release', ext: 'aar')
+    implementation 'com.grg:lib_auth:1.0.0@aar'
 
     api rootProject.ext.dependencies.arouter_api
 
