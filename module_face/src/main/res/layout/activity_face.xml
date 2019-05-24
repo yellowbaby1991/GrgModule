@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.grg.face.CameraViewWithFace
+    <com.grg.face.CameraTextureView1
         android:layout_width="640dp"
         android:layout_height="480dp"/>
 

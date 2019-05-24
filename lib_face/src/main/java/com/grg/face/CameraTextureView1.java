@@ -18,16 +18,16 @@ import java.io.File;
 import java.io.FileOutputStream;
 
 
-public class CameraTextureView extends TextureView {
+public class CameraTextureView1 extends TextureView {
 
     private boolean isRelease;
 
     public Camera mCamera;
 
-    public CameraTextureView(Context context, AttributeSet attrs) {
+    public CameraTextureView1(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
-        EventBus.TAG = "";
+        EventBus.TAG = "1";
     }
 
     private OnPreviewCallback mOnPreviewCallback;
