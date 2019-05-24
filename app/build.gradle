@@ -32,7 +32,7 @@ dependencies {
     if(!isMainModule.toBoolean()){
         implementation project(':module_main')
     }
-    if(!isCardModule.toBoolean()){
+    if(isNeedCardModule.toBoolean()){
         implementation project(':module_idcard')
     }
 }

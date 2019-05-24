@@ -1,12 +1,16 @@
-include ':app'
+include ':app', ':lib_face'
 
 include ':module_main'
-include ':module_idcard'
+
+if(isNeedCardModule.toBoolean()){
+    include ':module_idcard'
+    if (isCardMax2.toBoolean()){
+        include ':lib_idcard_max2'
+    }else{
+        include ':lib_idcard_max1'
+    }
+
+}
 
 include ':lib_common'
-if (isCardMax2.toBoolean()){
-    include ':lib_idcard_max2'
-}else{
-    include ':lib_idcard_max1'
-}
 
