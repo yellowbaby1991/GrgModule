@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.grg.idcard">
+
+    <application>
+        <activity
+            android:name=".IdCardActivity"
+            android:screenOrientation="landscape" />
+    </application>
+
+</manifest>

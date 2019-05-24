@@ -1,0 +1,12 @@
+include ':app'
+
+include ':module_main'
+include ':module_idcard'
+
+include ':lib_common'
+if (isCardMax2.toBoolean()){
+    include ':lib_idcard_max2'
+}else{
+    include ':lib_idcard_max1'
+}
+
