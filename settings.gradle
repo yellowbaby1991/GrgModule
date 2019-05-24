@@ -18,4 +18,5 @@ if(isNeedFaceModule.toBoolean() || isFaceModuleTest.toBoolean()){
 }
 
 include ':lib_common'
+include ':lib_uploadarr'
 

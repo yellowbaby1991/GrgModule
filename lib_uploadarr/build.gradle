@@ -1,0 +1,29 @@
+apply plugin: 'java-library'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
+
+apply plugin: 'maven'
+
+def coreAarFile = file('libs/auth-release.aar')
+
+artifacts {
+    archives coreAarFile
+}
+
+uploadArchives {
+    repositories.mavenDeployer {
+        //maven 本地文件地址
+        def mavenLib = file(getProperty('mavenPath'))
+        repository(url: "file://${mavenLib.absolutePath}")
+        pom.project {
+            version VERSIONID
+            groupId GROUDID
+            artifactId ARTIFACTID
+        }
+    }
+}
