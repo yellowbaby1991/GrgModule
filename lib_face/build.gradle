@@ -19,11 +19,6 @@ android {
         multiDexEnabled true
     }
 
-    repositories {
-        flatDir {
-            dirs 'libs'
-        }
-    }
 
     buildTypes {
         release {
@@ -32,6 +27,12 @@ android {
         }
     }
 
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
 }
 
 uploadArchives {

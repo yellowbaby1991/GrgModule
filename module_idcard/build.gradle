@@ -1,4 +1,4 @@
-if (isCardModule.toBoolean()) {
+if (isCardModuleTest.toBoolean()) {
     apply plugin: 'com.android.application'
 } else {
     apply plugin: 'com.android.library'
@@ -23,7 +23,7 @@ android {
 
     sourceSets {
         main {
-            if (isCardModule.toBoolean()) {
+            if (isCardModuleTest.toBoolean()) {
                 manifest.srcFile 'src/main/module/AndroidManifest.xml'
             } else {
                 manifest.srcFile 'src/main/AndroidManifest.xml'

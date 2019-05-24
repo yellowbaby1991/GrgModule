@@ -42,12 +42,14 @@ android {
         }
     }
 
-    repositories {
-        flatDir {
-            dirs 'libs', '../lib_face/libs'
-        }
-    }
 
+
+}
+
+repositories {
+    flatDir {
+        dirs 'libs', '../lib_face/libs'
+    }
 }
 
 dependencies {
