@@ -1,30 +1,43 @@
-package com.grg.face;
+package com.grg.face.view;
 
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
-import android.os.Environment;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.TextureView;
 
-
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
+import java.util.List;
 
 
-public class CameraTextureView1 extends TextureView {
+/***
+ * 相机预览控件
+ */
+public class CameraTextureView extends TextureView {
 
-    private boolean isRelease;
+    private int mCameraID;
 
-    public Camera mCamera;
+    private boolean mIsRelease;
 
-    public CameraTextureView1(Context context, AttributeSet attrs) {
+    private Camera mCamera;
+
+    private int mWidth, mHeight;
+
+    public CameraTextureView(Context context, AttributeSet attrs) {
         super(context, attrs);
+    }
+
+    public void startPreview(int cameraID) {
+        mCameraID = cameraID;
+        init();
+        mWidth = 640;
+        mHeight = 480;
+    }
+
+    public void startPreview(int cameraID, int width, int height) {
+        mCameraID = cameraID;
+        mWidth = width;
+        mHeight = height;
         init();
     }
 
@@ -41,17 +54,24 @@ public class CameraTextureView1 extends TextureView {
     private Camera.PreviewCallback mPreviewCallback = new Camera.PreviewCallback() {
         @Override
         public void onPreviewFrame(byte[] data, Camera camera) {
-            if (mOnPreviewCallback != null && !isRelease) {
+            if (mOnPreviewCallback != null && !mIsRelease) {
                 mOnPreviewCallback.onPreviewFrame(data, camera);
                 data = null;
             }
         }
     };
 
+    public Camera getCamera() {
+        return mCamera;
+    }
 
     private void init() {
 
-        mCamera = Camera.open(0);
+        mCamera = Camera.open(mCameraID);
+        Camera.Parameters parameters = mCamera.getParameters();
+        parameters.setPreviewSize(mWidth,mHeight);
+        mCamera.setParameters(parameters);
+
         this.setSurfaceTextureListener(new SurfaceTextureListener() {
             @Override
             public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int width, int height) {
@@ -59,7 +79,7 @@ public class CameraTextureView1 extends TextureView {
                     mCamera.setPreviewTexture(surfaceTexture);
                     mCamera.setPreviewCallback(mPreviewCallback);
                     mCamera.startPreview();
-                    isRelease = false;
+                    mIsRelease = false;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -74,7 +94,7 @@ public class CameraTextureView1 extends TextureView {
             @Override
 
             public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-                isRelease = true;
+                mIsRelease = true;
                 mCamera.setPreviewCallback(null);
                 mCamera.stopPreview();
                 mCamera.release();
@@ -92,8 +112,8 @@ public class CameraTextureView1 extends TextureView {
 
     }
 
-    public void stopCamera(){
-        if (mCamera != null){
+    public void stopCamera() {
+        if (mCamera != null) {
             mCamera.setPreviewCallback(null);
             mCamera.stopPreview();
             mCamera.release();
@@ -101,64 +121,5 @@ public class CameraTextureView1 extends TextureView {
         }
     }
 
-
-    public void take() {
-        if (mCamera != null)
-            mCamera.takePicture(null, null, mPictureCallback);
-    }
-
-
-    Camera.PictureCallback mPictureCallback = new Camera.PictureCallback() {
-
-        @Override
-
-        public void onPictureTaken(byte[] data, Camera camera) {
-            mCamera.stopPreview();
-            new FileSaver(data).save();
-
-        }
-
-    };
-
-    private class FileSaver implements Runnable {
-
-        private byte[] buffer;
-
-
-        public FileSaver(byte[] buffer) {
-            this.buffer = buffer;
-        }
-
-
-        public void save() {
-            new Thread(this).start();
-        }
-
-
-        @Override
-
-        public void run() {
-            try {
-                File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM), "zhangphil.png");
-                file.createNewFile();
-                FileOutputStream os = new FileOutputStream(file);
-                BufferedOutputStream bos = new BufferedOutputStream(os);
-                Bitmap bitmap = BitmapFactory.decodeByteArray(buffer, 0, buffer.length);
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, bos);
-                bos.flush();
-                bos.close();
-                os.close();
-
-                Log.d("照片已保存", file.getAbsolutePath());
-
-                mCamera.startPreview();
-            } catch (Exception e) {
-                e.printStackTrace();
-
-            }
-
-        }
-
-    }
 
 }

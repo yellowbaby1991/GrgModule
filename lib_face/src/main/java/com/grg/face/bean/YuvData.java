@@ -1,11 +1,17 @@
-package com.grg.face;
+package com.grg.face.bean;
 
 public class YuvData {
+
     byte[] yuvs;
+
     int type = 0;
+
     int format;
+
     int cameraRotate;
+
     int[] location;
+
     int[] priview;
 
     public int[] getLocation() {

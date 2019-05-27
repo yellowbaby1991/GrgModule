@@ -1,4 +1,4 @@
-package com.grg.face;
+package com.grg.face.bean;
 
 import android.graphics.Bitmap;
 

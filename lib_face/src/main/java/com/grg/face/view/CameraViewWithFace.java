@@ -1,4 +1,4 @@
-package com.grg.face;
+package com.grg.face.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -13,6 +13,11 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.aibee.auth.AibeeAuth;
+import com.grg.face.callback.CompareCallback;
+import com.grg.face.core.FaceDetecter;
+import com.grg.face.utils.FileUtils;
+import com.grg.face.R;
+import com.grg.face.bean.YuvData;
 
 import java.io.File;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -102,6 +107,9 @@ public class CameraViewWithFace extends RelativeLayout {
         if ("ffffffff-e6ca-bd6e-0033-c5870033c587".equals(deviceId)) {//com.grg.face
             license = "7B212E125DE430843BFAAFD08C39FE0D13BD0A4EA75444E9B7C8D098706243E0C2F6A6A46376EAACA62379F0B6F8D1832048B408B66C98DDCF759ED1D5D8398CBEB2D17159A1A9FD8D3F3939514E4146372B2FBDE3A0487C171A1702450E44CAEF5EBCE09ECB98C123FB186D42C8E067CD7BF963307E191FAF558B043EF6E9E6";
         }
+        if ("ffffffff-cdb6-cfea-0033-c5870033c587".equals(deviceId)) {//com.grg.face
+            license = "14733C1FF51B230CA060B9468EC25CC01D07553F99FC6350B22845EDFF8C8819A305F0F9D7B6F1D374F5F3364F192519DE7894DEF20A049064BBB56DB180F2EE23E0612EC56162280CC68484187F439D30A2A2D8ED1F5FB81B488373FF73D1740E2E4C6CF5E5569106473A40C702A3015A34B534141A45D5236098E853F5FB76";
+        }
         Log.e("设备编号", deviceId);//得到设备Id后，发给GRG获取license
         AibeeAuth.AuthResult result = AibeeAuth.getsInstance().authByLocal
                 (getContext(), "6016310883f488ca", license);
@@ -125,13 +133,13 @@ public class CameraViewWithFace extends RelativeLayout {
             }
 
             @Override
-            public void showFace(final Bitmap bitmap) {
+            public void showFace(final Bitmap bitmap, Bitmap pribitmap) {
                 if (mShowFaceCallBack != null){
                     mShowFaceCallBack.showFace(bitmap);
                 }
             }
         };
-        mFaceDetecter.init(mNormalQueue, mCompareCallback,getContext());
+        mFaceDetecter.init(mCompareCallback,getContext());
         mFvCam = new FaceView(getContext(), null);
         mCameraRl.addView(mFvCam);
     }

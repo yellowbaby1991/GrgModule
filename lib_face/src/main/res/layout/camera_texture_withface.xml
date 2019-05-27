@@ -7,7 +7,7 @@
     android:layout_width="640dp"
     android:layout_height="480dp">
 
-    <com.grg.face.CameraTextureView
+    <com.grg.face.view.CameraTextureView
         android:id="@+id/camera_vtv"
         android:layout_width="640dp"
         android:layout_height="480dp"

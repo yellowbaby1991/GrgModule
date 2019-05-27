@@ -1,8 +1,9 @@
-package com.grg.face;
+package com.grg.face.core;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.hardware.Camera;
 import android.util.Log;
@@ -13,18 +14,28 @@ import com.aibee.face.facesdk.FaceInfo;
 import com.aibee.face.facesdk.FaceSDK;
 import com.aibee.face.facesdk.FaceTracker;
 import com.aibee.face.facesdk.FaceVerifyData;
+import com.grg.face.bean.YuvData;
+import com.grg.face.callback.CompareCallback;
 
-import java.util.Queue;
-import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.Semaphore;
 
 public class FaceDetecter {
 
-    private Context mContext;
-
     private static FaceTracker mTracker;
 
     private static FaceIdentifier faceIdentifier;
+
+    private int angle = 0;
+
+    private int flip = 0;
+
+    private int format;
+
+    private int preframe = 0; //可见光处理队列开关
+
+    private int preframered = 0; //红外光处理队列开关
+
+    private Context mContext;
 
     private RectF rectF = new RectF();
 
@@ -40,24 +51,29 @@ public class FaceDetecter {
 
     private CompareCallback compareCallback;  //回调
 
+    private int width;
+
+    private int height;
+
     public void setCameraRotate(int cameraRotate) {
         this.cameraRotate = cameraRotate;
     }
 
-    public void init(final Queue mNormalQueue, CompareCallback compareCallback,Context context) {
+    public void init(CompareCallback compareCallback,Context context) {
         mContext = context;
         this.compareCallback = compareCallback;
         init(islive);
         new Thread(new Runnable() {
             @Override
             public void run() {
+
                 Thread.currentThread().setName("FaceDecter");
 
                 while (true) {
                     try {
                         mSemaphore.acquire();
                         if (mTracker != null) {
-                            start(mTracker, yuvimg, yuvred, mNormalQueue);
+                            start(mTracker, yuvimg, yuvred);
                         }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -68,7 +84,6 @@ public class FaceDetecter {
             }
         }).start();
     }
-
 
     public void onPreviewFrame(byte[] data,Camera camera) {
         setFormat(camera);
@@ -83,7 +98,6 @@ public class FaceDetecter {
             onPreviewFrame(data);
         }
     }
-
 
     public void init(boolean islive) {
         if (mTracker == null) {
@@ -125,8 +139,7 @@ public class FaceDetecter {
         }
     }
 
-
-    private void start(FaceTracker mTracker, byte[] yuvimg, byte[] yuvred, Queue mNormalQueue) {
+    private void start(FaceTracker mTracker, byte[] yuvimg, byte[] yuvred) {
 
         int rows = angle / 90 % 2 != 0 ? width : height;
         int cols = angle / 90 % 2 != 0 ? height : width;
@@ -176,11 +189,14 @@ public class FaceDetecter {
                     yuvData.setLocation(la);
                     yuvData.setYuvs(faceVerifyData[0].mRegJpeg);
                     yuvData.setPriview(ARGBdata);
-                    mNormalQueue.offer(yuvData);
+                    //mNormalQueue.offer(yuvData);
                     byte[] yuv = yuvData.getYuvs();
                     Bitmap bitmap = BitmapFactory.decodeByteArray(yuv, 0, yuv.length);
-                    compareCallback.showFace(bitmap);
-                    Log.e("TAG", "====活体==========================================");
+                    Bitmap pribitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_4444);
+                    bitmap = mirrorConvert(bitmap,0);
+                    pribitmap = mirrorConvert(pribitmap,0);
+                    compareCallback.showFace(bitmap, pribitmap);
+                    //Log.e("TAG", "====活体==========================================");
                 }
             }else {
                 YuvData yuvData = new YuvData();
@@ -188,12 +204,12 @@ public class FaceDetecter {
                 yuvData.setCameraRotate(cameraRotate);
                 yuvData.setLocation(la);
                 yuvData.setPriview(ARGBdata);
-                mNormalQueue.offer(yuvData);
+                //mNormalQueue.offer(yuvData);
                 int[] pridata = yuvData.getPriview();
                 if (pridata != null) {
                     int[] rectF = yuvData.getLocation();
-                    Bitmap pribitmap = Bitmap.createBitmap(640, 480, Bitmap.Config.ARGB_4444);
-                    pribitmap.setPixels(pridata, 0, 640, 0, 0, 640, 480);
+                    Bitmap pribitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_4444);
+                    pribitmap.setPixels(pridata, 0, width, 0, 0, width, height);
                     int padding = 30;
                     int toppadding = 40;
                     int left = rectF[0] - padding;
@@ -219,17 +235,17 @@ public class FaceDetecter {
                         h = pribitmap.getHeight() - top;
                     }
                     Bitmap bitmap = Bitmap.createBitmap(pribitmap, left, top, w, h);
-                    compareCallback.showFace(bitmap);
+                    bitmap = mirrorConvert(bitmap,0);
+                    pribitmap = mirrorConvert(pribitmap,0);
+                    compareCallback.showFace(bitmap,pribitmap);
                 }
             }
 
         } else {
-            mNormalQueue.clear();
+            //mNormalQueue.clear();
         }
 
     }
-
-    int format;
 
     public void setFormat(Camera camera) {
         if (yuvimg == null) {
@@ -241,16 +257,6 @@ public class FaceDetecter {
             }
         }
     }
-
-    private int width;
-    private int height;
-    private ArrayBlockingQueue<byte[]> arrayBlockingQueue = new ArrayBlockingQueue(1, true);
-
-    public int angle = 0;
-    public int flip = 0;
-    int preframe = 0;
-    int preframered = 0;
-
 
     private void onPreviewFrame(byte[] data) {
         if (mTracker == null) {
@@ -294,11 +300,21 @@ public class FaceDetecter {
         return islive;
     }
 
+    /**
+     * 设置是否开启活体检测，双目摄像头方生效
+     * @param islive
+     */
     public void setIslive(boolean islive) {
         this.islive = islive;
     }
 
-    public float verifyFeature(Object featureA, Object featureB) {
+    /**
+     * 对比特征值得到相似度
+     * @param featureA 特征值A
+     * @param featureB 特征值B
+     * @return 相似度
+     */
+    public float calcFeatureSimilarity(Object featureA, Object featureB) {
         init(islive);
         if (faceIdentifier == null || featureA == null || featureB == null) {
             return 0;
@@ -306,6 +322,11 @@ public class FaceDetecter {
         return faceIdentifier.calcFeatureSimilarity((float[]) featureA, (float[]) featureB);
     }
 
+    /**
+     * 提取特征值
+     * @param bitmap 人脸照片
+     * @return 特征值
+     */
     public float[] extractFeatures(Bitmap bitmap) {
         init(islive);
         if (faceIdentifier == null) {
@@ -323,4 +344,15 @@ public class FaceDetecter {
 
         return null;
     }
+
+    private  Bitmap mirrorConvert(Bitmap srcBitmap,int flag) {
+        //flag: 0 左右翻转，1 上下翻转
+        Matrix matrix = new Matrix();
+        if (flag == 0) //左右翻转
+            matrix.setScale(-1, 1);
+        if (flag == 1)  //上下翻转
+            matrix.setScale(1, -1);
+        return Bitmap.createBitmap(srcBitmap, 0, 0, srcBitmap.getWidth(), srcBitmap.getHeight(), matrix, true);
+    }
+
 }

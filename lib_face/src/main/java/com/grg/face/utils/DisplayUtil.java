@@ -1,4 +1,4 @@
-package com.grg.face;
+package com.grg.face.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -17,7 +17,7 @@ import java.io.ByteArrayOutputStream;
  *@version  
  *
  */
-public class Util {
+public class DisplayUtil {
 	public static void prepareMatrix(Matrix matrix, int cameraId, int displayOrientation, int viewWidth,
                                      int viewHeight) {
 		// Need mirror for front camera.

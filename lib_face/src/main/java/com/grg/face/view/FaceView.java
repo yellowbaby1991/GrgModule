@@ -1,4 +1,4 @@
-package com.grg.face;
+package com.grg.face.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -10,6 +10,8 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.grg.face.utils.DisplayUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +51,7 @@ public class FaceView extends View {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		if (mRectList.size() > 0) {
-			Util.prepareMatrix(mMatrix, 0, 0, getWidth(), getHeight());
+			DisplayUtil.prepareMatrix(mMatrix, 0, 0, getWidth(), getHeight());
 			canvas.save();
 			mMatrix.postRotate(0); // Matrix.postRotate默认是顺时针
 			// canvas.rotate(-0); //Canvas.rotate()默认是逆时针
