@@ -5,6 +5,12 @@
         <activity
             android:name=".FaceActivity"
             android:screenOrientation="landscape" />
+        <activity android:name=".SingleCameraActivity">
+        </activity>
+        <activity android:name=".LivingCameraActivity">
+        </activity>
+        <activity android:name=".FackCheckCameraActivity">
+        </activity>
     </application>
 
 </manifest>

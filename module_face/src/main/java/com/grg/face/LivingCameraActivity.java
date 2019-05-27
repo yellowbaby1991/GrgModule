@@ -5,6 +5,7 @@ import android.graphics.RectF;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -17,6 +18,8 @@ import com.grg.face.view.CameraTextureView;
 
 @Route(path = "/face/living")
 public class LivingCameraActivity extends AppCompatActivity {
+
+    private static final String TAG = "LivingCameraActivity";
 
     private FaceDetecter mFaceDetecter;
 
@@ -82,7 +85,7 @@ public class LivingCameraActivity extends AppCompatActivity {
         mFaceDetecter.init(new CompareCallback() {
             @Override
             public void showFaceFrame(RectF rectF) {
-
+                Log.d(TAG,"检测到人脸");
             }
 
             @Override
@@ -92,6 +95,7 @@ public class LivingCameraActivity extends AppCompatActivity {
                     public void run() {
                         mFaceIv.setImageBitmap(bitmap);
                         mImageView.setImageBitmap(pribitmap);
+                        Log.d(TAG,"检测到活体拉！！");
                     }
                 });
             }

@@ -189,10 +189,12 @@ public class FaceDetecter {
                     yuvData.setLocation(la);
                     yuvData.setYuvs(faceVerifyData[0].mRegJpeg);
                     yuvData.setPriview(ARGBdata);
+                    int[] pridata = yuvData.getPriview();
                     //mNormalQueue.offer(yuvData);
                     byte[] yuv = yuvData.getYuvs();
                     Bitmap bitmap = BitmapFactory.decodeByteArray(yuv, 0, yuv.length);
                     Bitmap pribitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_4444);
+                    pribitmap.setPixels(pridata, 0, width, 0, 0, width, height);
                     bitmap = mirrorConvert(bitmap,0);
                     pribitmap = mirrorConvert(pribitmap,0);
                     compareCallback.showFace(bitmap, pribitmap);
