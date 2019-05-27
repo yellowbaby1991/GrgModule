@@ -7,26 +7,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.grg.face.view.CameraTextureView
-        android:id="@+id/camera_vtv"
-        android:layout_width="640dp"
-        android:layout_height="480dp"/>
-
-    <ImageView
-        android:layout_marginLeft="20dp"
-        android:id="@+id/face_iv"
+    <Button
+        android:layout_margin="30dp"
+        android:textSize="20dp"
+        android:onClick="singleCamera"
+        android:text="单目人脸检测"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-    <ImageView
-        android:layout_marginLeft="20dp"
-        android:id="@+id/img_iv"
+    <Button
+        android:layout_margin="30dp"
+        android:textSize="20dp"
+        android:onClick="faceCheckCamera"
+        android:text="带画框人脸检测"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-<!--    <com.grg.face.view.CameraViewWithFace
-        android:id="@+id/camera_vtv_withface"
-        android:layout_width="640dp"
-        android:layout_height="480dp"/>-->
+    <Button
+        android:layout_margin="30dp"
+        android:textSize="20dp"
+        android:onClick="livingCamera"
+        android:text="双目活体检测"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

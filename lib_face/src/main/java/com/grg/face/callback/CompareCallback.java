@@ -9,7 +9,7 @@ public interface CompareCallback {
      * 返回人脸坐标，用于画框
      * @param rectF
      */
-    void showfaceFrame(RectF rectF);
+    void showFaceFrame(RectF rectF);
 
     /**
      * 返回人脸图和原图

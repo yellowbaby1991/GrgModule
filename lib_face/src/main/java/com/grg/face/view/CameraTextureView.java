@@ -27,6 +27,10 @@ public class CameraTextureView extends TextureView {
         super(context, attrs);
     }
 
+    /**
+     * 默认打开分辨率640×480的相机
+     * @param cameraID 相机序号
+     */
     public void startPreview(int cameraID) {
         mCameraID = cameraID;
         init();
@@ -34,6 +38,10 @@ public class CameraTextureView extends TextureView {
         mHeight = 480;
     }
 
+    /**
+     * 打开指定分辨率的相机
+     * @param cameraID 相机序号
+     */
     public void startPreview(int cameraID, int width, int height) {
         mCameraID = cameraID;
         mWidth = width;
@@ -63,6 +71,14 @@ public class CameraTextureView extends TextureView {
 
     public Camera getCamera() {
         return mCamera;
+    }
+
+    public int getCameraHeight() {
+        return mHeight;
+    }
+
+    public int getCameraWidth() {
+        return mWidth;
     }
 
     private void init() {

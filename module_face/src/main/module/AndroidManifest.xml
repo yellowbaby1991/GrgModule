@@ -2,14 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.grg.face">
 
-
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
     <application
-        android:allowBackup="true"
         android:name="com.lib.common.base.BaseApplication"
+        android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
@@ -21,6 +21,12 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".SingleCameraActivity">
+        </activity>
+        <activity android:name=".LivingCameraActivity">
+        </activity>
+        <activity android:name=".FackCheckCameraActivity">
         </activity>
     </application>
 

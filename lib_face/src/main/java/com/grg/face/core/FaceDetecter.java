@@ -176,7 +176,7 @@ public class FaceDetecter {
             la[1] = (int) rectF.top;
             la[2] = (int) rectF.right;
             la[3] = (int) rectF.bottom;
-            compareCallback.showfaceFrame(rectF);
+            compareCallback.showFaceFrame(rectF);
 
             //Log.e("TAG", "====人脸=====");
 
