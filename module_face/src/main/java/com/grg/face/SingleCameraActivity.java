@@ -67,7 +67,7 @@ public class SingleCameraActivity extends AppCompatActivity {
     }
 
     private void initFaceDetecter() {
-        mFaceDetecter = new FaceDetecter();
+        mFaceDetecter = new MyFaceDetecter();
         mFaceDetecter.setIslive(false);
         mFaceDetecter.setCameraRotate(0);
         mFaceDetecter.init(new CompareCallback() {

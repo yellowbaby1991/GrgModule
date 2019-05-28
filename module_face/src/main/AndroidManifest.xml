@@ -1,15 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.grg.face">
 
     <application>
         <activity
             android:name=".FaceActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"/>
         <activity android:name=".SingleCameraActivity">
         </activity>
         <activity android:name=".LivingCameraActivity">
         </activity>
         <activity android:name=".FackCheckCameraActivity">
+        </activity>
+        <activity android:name=".CustomActivity">
         </activity>
     </application>
 

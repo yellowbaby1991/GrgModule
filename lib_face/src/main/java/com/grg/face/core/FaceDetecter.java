@@ -19,11 +19,15 @@ import com.grg.face.callback.CompareCallback;
 
 import java.util.concurrent.Semaphore;
 
+
+/**
+ * 人脸算法处理器，内部长期运行算法处理线程
+ */
 public class FaceDetecter {
 
-    private static FaceTracker mTracker;
+    protected static FaceTracker mTracker;
 
-    private static FaceIdentifier faceIdentifier;
+    protected static FaceIdentifier faceIdentifier;
 
     private int angle = 0;
 
@@ -35,7 +39,7 @@ public class FaceDetecter {
 
     private int preframered = 0; //红外光处理队列开关
 
-    private Context mContext;
+    protected Context mContext;
 
     private RectF rectF = new RectF();
 
@@ -45,15 +49,15 @@ public class FaceDetecter {
 
     private byte[] yuvred = null;   //红外光图片
 
-    private int cameraRotate;    //旋转角度
+    protected int cameraRotate;    //旋转角度
 
     private Semaphore mSemaphore = new Semaphore(0);
 
     private CompareCallback compareCallback;  //回调
 
-    private int width;
+    private int width; //视频分辨率宽
 
-    private int height;
+    private int height; //视频分辨率高
 
     public void setCameraRotate(int cameraRotate) {
         this.cameraRotate = cameraRotate;

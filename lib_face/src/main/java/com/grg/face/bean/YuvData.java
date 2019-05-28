@@ -1,17 +1,32 @@
 package com.grg.face.bean;
 
+
 public class YuvData {
 
+
+    /**
+     * 相机yuv视频流
+     */
     byte[] yuvs;
 
-    int type = 0;
-
+    /**
+     * 相机参数format
+     */
     int format;
 
+    /**
+     * 旋转角度
+     */
     int cameraRotate;
 
+    /**
+     * 人脸坐标
+     */
     int[] location;
 
+    /**
+     * 相机argb视频流
+     */
     int[] priview;
 
     public int[] getLocation() {
@@ -30,13 +45,6 @@ public class YuvData {
         this.yuvs = yuvs;
     }
 
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
 
     public int getFormat() {
         return format;

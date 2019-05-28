@@ -2,10 +2,19 @@ package com.grg.face.bean;
 
 import android.graphics.Bitmap;
 
+/**
+ * 用于存储人脸特征值的对象
+ */
 public class Face {
 
+    /**
+     * 人脸照片
+     */
     private Bitmap bitmap;
 
+    /**
+     * 特征值数组
+     */
     private byte[] featureValue;
 
     public byte[] getFeatureValue() {

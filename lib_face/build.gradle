@@ -87,6 +87,7 @@ dependencies {
     }
 
     //api(name: 'faceSDK-release', ext: 'aar')
+    //api(name: 'auth-release', ext: 'aar')
     implementation 'com.grg:lib_faceSDK:1.0.0@aar'
     implementation 'com.grg:lib_auth:1.0.0@aar'
 

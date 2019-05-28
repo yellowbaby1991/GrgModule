@@ -16,6 +16,6 @@ public interface CompareCallback {
      * @param bitmap 人脸图
      * @param pribitmap 原图
      */
-    void showFace(Bitmap bitmap, Bitmap pribitmap); //回调抓取的人脸
+    void showFace(Bitmap bitmap, Bitmap pribitmap);
 
 }

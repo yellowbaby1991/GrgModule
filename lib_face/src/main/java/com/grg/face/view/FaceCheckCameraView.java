@@ -19,6 +19,10 @@ import com.grg.face.core.FaceDetecter;
 
 import static com.aibee.auth.AibeeAuth.AuthState.AuthStateSuc;
 
+
+/**
+ * 带人脸检测画框的cameraview
+ */
 public class FaceCheckCameraView extends RelativeLayout {
 
     private boolean mIsShowFrame = true; //是否画框
@@ -59,10 +63,20 @@ public class FaceCheckCameraView extends RelativeLayout {
         mIsShowFrame = isShowFrame;
     }
 
+    /**
+     * 打开分辨率640×480的摄像头
+     * @param cameraID 摄像头编号
+     */
     public void startPreview(int cameraID) {
-        startPreview(cameraID,640,480);
+        startPreview(cameraID, 640, 480);
     }
 
+    /**
+     * 打开指定分辨率的摄像头
+     * @param cameraID 摄像头编号
+     * @param width 宽
+     * @param height 高
+     */
     public void startPreview(int cameraID, int width, int height) {
         if (!isAuthSuc()) {
             Toast.makeText(getContext(), "算法授权未成功", Toast.LENGTH_SHORT).show();
@@ -95,28 +109,32 @@ public class FaceCheckCameraView extends RelativeLayout {
     }
 
     private void initFaceDetecter() {
-        mFaceDetecter = new FaceDetecter();
+        mFaceDetecter = createFaceDetater();
         mFaceDetecter.setIslive(false);
         mFaceDetecter.setCameraRotate(0);
         mFaceDetecter.init(new CompareCallback() {
             @Override
             public void showFaceFrame(RectF rectF) {
-                if (mIsShowFrame){
+                if (mIsShowFrame) {
                     Log.d(TAG, "检测到人脸");
                     onSendMsg(SHOW_FRAME, rectF);
                 }
-                if (mCompareCallback != null){
+                if (mCompareCallback != null) {
                     mCompareCallback.showFaceFrame(rectF);
                 }
             }
 
             @Override
             public void showFace(Bitmap bitmap, Bitmap pribitmap) {
-                if (mCompareCallback != null){
-                    mCompareCallback.showFace(bitmap,pribitmap);
+                if (mCompareCallback != null) {
+                    mCompareCallback.showFace(bitmap, pribitmap);
                 }
             }
         }, getContext());
+    }
+
+    protected FaceDetecter createFaceDetater() {
+        return new FaceDetecter();
     }
 
     private void setDecterToCamera() {
@@ -164,6 +182,7 @@ public class FaceCheckCameraView extends RelativeLayout {
 
     /**
      * 根据坐标画框，可以重写该方法
+     *
      * @param rectF
      */
     protected void showFrame(RectF rectF) {

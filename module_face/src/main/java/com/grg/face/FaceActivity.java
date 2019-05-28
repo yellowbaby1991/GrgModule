@@ -21,6 +21,12 @@ public class FaceActivity extends AppCompatActivity {
 
     }
 
+    public void custom(View view){
+        ARouter.getInstance().
+                build("/face/custom")
+                .navigation();
+    }
+
     public void singleCamera(View view) {
         ARouter.getInstance().
                 build("/face/single")
