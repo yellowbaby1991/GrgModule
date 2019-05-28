@@ -6,14 +6,19 @@ import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.lib.common.base.log.GrgLog;
 
 @Route(path = "/main/activity")
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        GrgLog.d(TAG,"MainActivity");
 
     }
 

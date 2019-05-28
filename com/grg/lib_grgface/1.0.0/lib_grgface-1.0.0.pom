@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.grg</groupId>
-  <artifactId>lib_common</artifactId>
+  <artifactId>lib_grgface</artifactId>
   <version>1.0.0</version>
   <packaging>aar</packaging>
   <dependencies>
@@ -46,6 +46,32 @@
       <artifactId>multidex</artifactId>
       <version>1.0.2</version>
       <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.grg</groupId>
+      <artifactId>lib_faceSDK</artifactId>
+      <version>1.0.0</version>
+      <type>aar</type>
+      <scope>compile</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>*</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.grg</groupId>
+      <artifactId>lib_auth</artifactId>
+      <version>1.0.0</version>
+      <type>aar</type>
+      <scope>compile</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>*</artifactId>
+          <groupId>*</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
 </project>
