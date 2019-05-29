@@ -6,6 +6,8 @@ import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.grg.face.core.FaceAuth;
+import com.lib.common.utils.ToastUtils;
 
 @Route(path = "/face/activity")
 public class FaceActivity extends AppCompatActivity {
@@ -15,6 +17,8 @@ public class FaceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_face);
+
+        ToastUtils.show(FaceAuth.getDeviceId(this));
 
         ARouter.getInstance().inject(this);
 

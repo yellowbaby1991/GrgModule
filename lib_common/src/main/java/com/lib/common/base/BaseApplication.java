@@ -9,12 +9,16 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.lib.common.crash.Cockroach;
 import com.lib.common.crash.ExceptionHandler;
 import com.lib.common.log.GrgLog;
+import com.squareup.leakcanary.LeakCanary;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by Administrator on 2018/4/30 0030.
+ * BaseApplication,包含以下功能
+ * 1）内存泄漏检测
+ * 2）崩溃收集但是不闪退
+ * 3）集成阿里路由
  */
 
 public class BaseApplication extends Application {
@@ -29,6 +33,7 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
+        LeakCanary.install(this);
         installCrashRoach();
         initRouter();
         registerGrgLog();

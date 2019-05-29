@@ -40,6 +40,7 @@ android {
 
     buildTypes {
         release {
+            multiDexEnabled true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -47,6 +48,8 @@ android {
 
 
 }
+
+task allDeps(type: DependencyReportTask) {}
 
 repositories {
     flatDir {
@@ -56,10 +59,11 @@ repositories {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':lib_face')
-    implementation 'com.grg:lib_face:1.0.0'
+    //implementation project(':lib_face')
+    //implementation 'com.grg:lib_face:1.0.0'
     implementation project(':lib_common')
+    implementation project(':lib_face')
 
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    //implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     annotationProcessor rootProject.ext.dependencies.arouter_compiler
 }

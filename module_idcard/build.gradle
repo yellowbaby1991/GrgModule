@@ -38,11 +38,14 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            multiDexEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
 }
+
+task allDeps(type: DependencyReportTask) {}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

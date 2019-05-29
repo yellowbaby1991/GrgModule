@@ -24,6 +24,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            multiDexEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -78,21 +79,21 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    api(rootProject.ext.dependencies.appcompatV7) {
+   /* api(rootProject.ext.dependencies.appcompatV7) {
         exclude module: "support-annotations"
         exclude module: "support-v4"
     }
     api(rootProject.ext.dependencies.support_v4) {
         exclude module: "support-annotations"
-    }
+    }*/
 
     //api(name: 'faceSDK-release', ext: 'aar')
     //api(name: 'auth-release', ext: 'aar')
     implementation 'com.grg:lib_faceSDK:1.0.0@aar'
     implementation 'com.grg:lib_auth:1.0.0@aar'
 
-    api rootProject.ext.dependencies.arouter_api
+    //api rootProject.ext.dependencies.arouter_api
 
-    annotationProcessor rootProject.ext.dependencies.arouter_compiler
+    //annotationProcessor rootProject.ext.dependencies.arouter_compiler
 
 }

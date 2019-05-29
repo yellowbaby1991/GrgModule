@@ -70,7 +70,7 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    api(rootProject.ext.dependencies.appcompatV7) {
+    /*api(rootProject.ext.dependencies.appcompatV7) {
         exclude module: "support-annotations"
         exclude module: "support-v4"
     }
@@ -80,5 +80,5 @@ dependencies {
 
     api rootProject.ext.dependencies.arouter_api
 
-    annotationProcessor rootProject.ext.dependencies.arouter_compiler
+    annotationProcessor rootProject.ext.dependencies.arouter_compiler*/
 }

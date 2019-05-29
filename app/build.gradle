@@ -33,6 +33,7 @@ repositories {
         }
     }
 }
+task allDeps(type: DependencyReportTask) {}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

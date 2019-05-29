@@ -7,7 +7,8 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.lib.common.base.BaseApplication;
+import com.lib.common.utils.ToastUtils;
+
 
 @Route(path = "/idcard/activity")
 public class IdCardActivity extends AppCompatActivity {
@@ -20,7 +21,7 @@ public class IdCardActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(getApplicationContext(),idCard.getName(),Toast.LENGTH_SHORT).show();
+                    ToastUtils.show(idCard.getName().trim());
                 }
             });
         }
@@ -46,6 +47,7 @@ public class IdCardActivity extends AppCompatActivity {
         }else {
             Toast.makeText(getApplicationContext(),"初始化失败",Toast.LENGTH_SHORT).show();
         }
+
     }
 
 }

@@ -7,6 +7,7 @@ import android.view.View;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.lib.common.log.GrgLog;
+import com.lib.common.utils.ToastUtils;
 
 @Route(path = "/main/activity")
 public class MainActivity extends AppCompatActivity {
@@ -26,14 +27,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void idcard(View view){
 
-
-
         ARouter.getInstance().
                 build("/idcard/activity")
                 .withString("name","黄贝")
                 .navigation();
 
-        throw new RuntimeException("123");
+        ToastUtils.show("123");
+
+        //throw new RuntimeException("123");
 
     }
 
