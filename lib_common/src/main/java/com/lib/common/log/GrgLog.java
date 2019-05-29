@@ -1,4 +1,4 @@
-package com.lib.common.base.log;
+package com.lib.common.log;
 
 import android.os.StatFs;
 import android.util.Log;

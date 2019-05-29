@@ -6,7 +6,7 @@ import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.lib.common.base.log.GrgLog;
+import com.lib.common.log.GrgLog;
 
 @Route(path = "/main/activity")
 public class MainActivity extends AppCompatActivity {
@@ -20,14 +20,20 @@ public class MainActivity extends AppCompatActivity {
 
         GrgLog.d(TAG,"MainActivity");
 
+
+
     }
 
     public void idcard(View view){
+
+
 
         ARouter.getInstance().
                 build("/idcard/activity")
                 .withString("name","黄贝")
                 .navigation();
+
+        throw new RuntimeException("123");
 
     }
 
