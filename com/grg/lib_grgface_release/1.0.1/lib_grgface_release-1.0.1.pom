@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.grg</groupId>
-  <artifactId>lib_grgface</artifactId>
+  <artifactId>lib_grgface_release</artifactId>
   <version>1.0.1</version>
   <packaging>aar</packaging>
   <dependencies>
