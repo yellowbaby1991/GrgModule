@@ -6,6 +6,8 @@ import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.lib.common.http.HttpHelper;
+import com.lib.common.http.interfaces.ICallBack;
 import com.lib.common.log.GrgLog;
 import com.lib.common.utils.ToastUtils;
 
@@ -20,6 +22,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         GrgLog.d(TAG,"MainActivity");
+
+        HttpHelper.obtain().get("http://v.juhe.cn/toutiao/index", null, new ICallBack() {
+            @Override
+            public void onSuccess(String string) {
+
+            }
+
+            @Override
+            public void onFailed(String string) {
+
+            }
+        });
 
 
 

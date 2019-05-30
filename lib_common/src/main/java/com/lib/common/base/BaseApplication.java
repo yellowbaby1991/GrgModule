@@ -8,6 +8,8 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.lib.common.crash.Cockroach;
 import com.lib.common.crash.ExceptionHandler;
+import com.lib.common.http.HttpHelper;
+import com.lib.common.http.processor.VolleyProcessor;
 import com.lib.common.log.GrgLog;
 import com.squareup.leakcanary.LeakCanary;
 
@@ -34,6 +36,7 @@ public class BaseApplication extends Application {
         super.onCreate();
         instance = this;
         LeakCanary.install(this);
+        HttpHelper.init(new VolleyProcessor(this));
         installCrashRoach();
         initRouter();
         registerGrgLog();
