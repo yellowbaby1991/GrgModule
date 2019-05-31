@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         GrgLog.d(TAG,"MainActivity");
 
+
         HttpHelper.obtain().get("http://v.juhe.cn/toutiao/index", null, new ICallBack() {
             @Override
             public void onSuccess(String string) {

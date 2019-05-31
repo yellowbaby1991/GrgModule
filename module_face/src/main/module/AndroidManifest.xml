@@ -3,6 +3,7 @@
           package="com.grg.face">
 
     <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
@@ -22,11 +23,15 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".SingleCameraActivity">
+        <activity android:name=".single.SingleCameraActivity">
         </activity>
-        <activity android:name=".LivingCameraActivity">
+        <activity android:name=".living.SingleLivingCameraActivity">
         </activity>
-        <activity android:name=".FackCheckCameraActivity">
+        <activity android:name=".cameraview.FaceCheckCameraActivity">
+        </activity>
+        <activity android:name=".living.LivingCameraActivity">
+        </activity>
+        <activity android:name=".custom.CustomActivity">
         </activity>
     </application>
 

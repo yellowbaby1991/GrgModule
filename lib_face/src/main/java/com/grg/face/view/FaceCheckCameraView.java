@@ -110,8 +110,8 @@ public class FaceCheckCameraView extends RelativeLayout {
 
     private void initFaceDetecter() {
         mFaceDetecter = createFaceDetater();
-        mFaceDetecter.setIslive(false);
-        mFaceDetecter.setCameraRotate(0);
+        mFaceDetecter.setTwoCamera(false);
+        //mFaceDetecter.setCameraRotate(0);
         mFaceDetecter.init(new CompareCallback() {
             @Override
             public void showFaceFrame(RectF rectF) {

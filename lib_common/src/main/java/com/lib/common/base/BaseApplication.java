@@ -6,6 +6,8 @@ import android.os.Looper;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.github.moduth.blockcanary.BlockCanary;
+import com.lib.common.block.AppBlockCanaryContext;
 import com.lib.common.crash.Cockroach;
 import com.lib.common.crash.ExceptionHandler;
 import com.lib.common.http.HttpHelper;
@@ -35,6 +37,7 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
+        BlockCanary.install(this, new AppBlockCanaryContext()).start();
         LeakCanary.install(this);
         HttpHelper.init(new VolleyProcessor(this));
         installCrashRoach();

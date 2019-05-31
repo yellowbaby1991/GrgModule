@@ -6,13 +6,15 @@
         <activity
             android:name=".FaceActivity"
             android:screenOrientation="landscape"/>
-        <activity android:name=".SingleCameraActivity">
+        <activity android:name=".single.SingleCameraActivity">
         </activity>
-        <activity android:name=".LivingCameraActivity">
+        <activity android:name=".living.SingleLivingCameraActivity">
         </activity>
-        <activity android:name=".FackCheckCameraActivity">
+        <activity android:name=".cameraview.FaceCheckCameraActivity">
         </activity>
-        <activity android:name=".CustomActivity">
+        <activity android:name=".living.LivingCameraActivity">
+        </activity>
+        <activity android:name=".custom.CustomActivity">
         </activity>
     </application>
 

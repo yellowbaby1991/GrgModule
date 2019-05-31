@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.grg.face.MyFaceCheckCameraView
+    <com.grg.face.custom.MyFaceCheckCameraView
         android:id="@+id/face_check_view"
         android:layout_width="640dp"
         android:layout_height="480dp"/>

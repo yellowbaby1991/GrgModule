@@ -65,8 +65,11 @@ dependencies {
     }
 
     debugApi 'com.squareup.leakcanary:leakcanary-android:1.3'
-
     releaseApi 'com.squareup.leakcanary:leakcanary-android-no-op:1.3'
+    debugApi 'com.github.moduth:blockcanary-android:1.2.1'
+    releaseApi 'com.github.moduth:blockcanary-no-op:1.2.1'
+
+
 
     annotationProcessor rootProject.ext.dependencies.arouter_compiler
 }
