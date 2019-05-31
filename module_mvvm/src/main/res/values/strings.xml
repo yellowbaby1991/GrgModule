@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">module_mvvm</string>
+    <string name="title_activity_mvvm">MvvmActivity</string>
+</resources>

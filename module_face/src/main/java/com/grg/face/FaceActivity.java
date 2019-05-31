@@ -29,7 +29,6 @@ public class FaceActivity extends AppCompatActivity {
 
         ARouter.getInstance().inject(this);
 
-
     }
 
     public void singleLivingCamera(View view){

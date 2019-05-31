@@ -33,6 +33,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
+        <Button
+            android:text="MVVM架构演示"
+            android:textSize="30dp"
+            android:onClick="mvvm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
     </LinearLayout>
 
 

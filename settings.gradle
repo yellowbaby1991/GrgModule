@@ -1,6 +1,4 @@
-include ':app'
-
-include ':module_main'
+include ':app', ':module_mvvm'
 
 if(isNeedCardModule.toBoolean() || isCardModuleTest.toBoolean()){
     include ':module_idcard'
@@ -17,6 +15,10 @@ if(isNeedFaceModule.toBoolean() || isFaceModuleTest.toBoolean()){
     include ':lib_face'
 }
 
+if(isNeedMvvmModule.toBoolean() || isMvvmModuleTest.toBoolean()){
+    include ':module_main'
+}
+
 include ':lib_common'
-include ':lib_uploadarr'
+//include ':lib_uploadarr'  上传faceSDK和authSDK用的
 

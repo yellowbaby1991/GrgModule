@@ -64,12 +64,10 @@ dependencies {
         exclude module: "support-v4"
     }
 
-    debugApi 'com.squareup.leakcanary:leakcanary-android:1.3'
-    releaseApi 'com.squareup.leakcanary:leakcanary-android-no-op:1.3'
-    debugApi 'com.github.moduth:blockcanary-android:1.2.1'
-    releaseApi 'com.github.moduth:blockcanary-no-op:1.2.1'
-
-
+    debugApi (rootProject.ext.dependencies.debugleak)
+    releaseApi (rootProject.ext.dependencies.releaseleak)
+    debugApi (rootProject.ext.dependencies.debugblock)
+    releaseApi (rootProject.ext.dependencies.releaseblock)
 
     annotationProcessor rootProject.ext.dependencies.arouter_compiler
 }

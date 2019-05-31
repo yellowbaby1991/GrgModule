@@ -23,20 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         GrgLog.d(TAG,"MainActivity");
 
-
-        HttpHelper.obtain().get("http://v.juhe.cn/toutiao/index", null, new ICallBack() {
-            @Override
-            public void onSuccess(String string) {
-
-            }
-
-            @Override
-            public void onFailed(String string) {
-
-            }
-        });
-
-
+        ARouter.getInstance().inject(this);
 
     }
 
@@ -47,10 +34,6 @@ public class MainActivity extends AppCompatActivity {
                 .withString("name","黄贝")
                 .navigation();
 
-        ToastUtils.show("123");
-
-        //throw new RuntimeException("123");
-
     }
 
     public void face(View view){
@@ -59,5 +42,11 @@ public class MainActivity extends AppCompatActivity {
                 build("/face/activity")
                 .navigation();
 
+    }
+
+    public void mvvm(View view){
+        ARouter.getInstance().
+                build("/mvvm/activity")
+                .navigation();
     }
 }
