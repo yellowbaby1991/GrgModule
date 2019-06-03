@@ -6,6 +6,10 @@ if (isMvvmModuleTest.toBoolean()) {
 
 android {
 
+    dataBinding {
+        enabled = true
+    }
+
     compileSdkVersion rootProject.ext.android.compileSdkVersion
 
     defaultConfig {
@@ -50,5 +54,6 @@ task allDeps(type: DependencyReportTask) {}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':lib_common')
+    implementation rootProject.ext.dependencies.recycleview
     annotationProcessor rootProject.ext.dependencies.arouter_compiler
 }

@@ -1,11 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MvvmActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.grg.mvvm.viewmodel.MainViewModel"/>
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/very_light_grey"
+        tools:context=".MainActivity">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            app:title="MVVM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+        <RelativeLayout
+            android:id="@+id/layout_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar"
+            android:animateLayoutChanges="true"
+            android:background="?attr/colorPrimary"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="20dp">
+
+            <ImageButton
+                android:id="@+id/button_search"
+                android:visibility="@{viewModel.searchButtonVisibility}"
+                android:onClick="@{viewModel.onClickSearch}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="5dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_search_white_36dp"/>
+
+            <EditText
+                android:id="@+id/edit_text_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/button_search"
+                android:onEditorAction="@{viewModel.onSearchAction}"
+                android:inputType="text"
+                android:imeOptions="actionSearch"
+                app:addTextChangedListener = "@{viewModel.usernameEditTextWatcher}"
+                android:textColor="@color/white"
+                android:theme="@style/LightEditText"/>
+
+        </RelativeLayout>
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.progressVisibility}"
+            android:layout_below="@id/layout_search"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/text_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_search"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="@{viewModel.infoMessage}"
+            android:gravity="center"
+            android:textColor="@color/secondary_text"
+            android:textSize="18sp"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/repos_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/layout_search"
+            android:clipToPadding="false"
+            android:scrollbars="vertical"/>
+
+    </RelativeLayout>
 
 
-</RelativeLayout>
+
+
+
+</layout>

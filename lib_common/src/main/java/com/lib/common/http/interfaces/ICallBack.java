@@ -2,8 +2,8 @@ package com.lib.common.http.interfaces;
 
 public interface ICallBack {
 
-    void onSuccess(String string);
+    void onSuccess(String msg);
 
-    void onFailed(String string);
+    void onFailed(String msg);
 
 }
