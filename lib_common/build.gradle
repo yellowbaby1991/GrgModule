@@ -49,25 +49,26 @@ dependencies {
 
     api(rootProject.ext.dependencies.appcompatV7)
     api(rootProject.ext.dependencies.support_v4)
-    api (rootProject.ext.dependencies.volley)
+    api(rootProject.ext.dependencies.volley)
+    api(rootProject.ext.dependencies.fastjson)
 
     implementation files('libs/android-logging-log4j-1.0.3.jar')
     implementation files('libs/log4j-1.2.17.jar')
 
     //解除反射限制
-    api(rootProject.ext.dependencies.reflection){
+    api(rootProject.ext.dependencies.reflection) {
         exclude module: "support-v4"
     }
 
     //阿里路由
-    api (rootProject.ext.dependencies.arouter_api){
+    api(rootProject.ext.dependencies.arouter_api) {
         exclude module: "support-v4"
     }
 
-    debugApi (rootProject.ext.dependencies.debugleak)
-    releaseApi (rootProject.ext.dependencies.releaseleak)
-    debugApi (rootProject.ext.dependencies.debugblock)
-    releaseApi (rootProject.ext.dependencies.releaseblock)
+    debugApi(rootProject.ext.dependencies.debugleak)
+    releaseApi(rootProject.ext.dependencies.releaseleak)
+    debugApi(rootProject.ext.dependencies.debugblock)
+    releaseApi(rootProject.ext.dependencies.releaseblock)
 
     annotationProcessor rootProject.ext.dependencies.arouter_compiler
 }

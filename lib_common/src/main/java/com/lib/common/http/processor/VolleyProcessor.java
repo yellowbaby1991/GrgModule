@@ -19,6 +19,7 @@ import com.lib.common.http.interfaces.IhttpProcessor;
 
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 
@@ -38,6 +39,7 @@ public class VolleyProcessor implements IhttpProcessor {
                 url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                response = dealString(response);
                 callback.onSuccess(response);
             }
         }, new Response.ErrorListener() {
@@ -55,6 +57,7 @@ public class VolleyProcessor implements IhttpProcessor {
                 url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                response = dealString(response);
                 callback.onSuccess(response);
             }
         }, new Response.ErrorListener() {
@@ -76,7 +79,7 @@ public class VolleyProcessor implements IhttpProcessor {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        callback.onSuccess(response.toString());
+                        callback.onSuccess(dealString(response.toString()));
                     }
                 },
                 new Response.ErrorListener() {
@@ -89,4 +92,15 @@ public class VolleyProcessor implements IhttpProcessor {
         mQueue.add(jsonRequest);
 
     }
+
+    @NonNull
+    //处理中文乱码
+    private String dealString(String response) {
+        try {
+            response=new String(response.getBytes("iso-8859-1"), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } return response;
+    }
+
 }

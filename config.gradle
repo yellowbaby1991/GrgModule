@@ -21,7 +21,9 @@ ext {
             releaseleak = "1.3",
             debugblock = "1.5.0",
             releaseblock = "1.5.0",
-            volley = "1.0.0"
+            volley = "1.0.0",
+            fastjson ="1.1.56.android",
+            circleImageView = "1.3.0"
     ]
 
     dependencies = [
@@ -42,10 +44,13 @@ ext {
             debugleak       : "com.squareup.leakcanary:leakcanary-android:$rootProject.debugleak",
             releaseleak     : "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.releaseleak",
             //检测UI卡顿
-            debugblock       : "com.github.markzhai:blockcanary-android:$rootProject.debugblock",
-            releaseblock     : "com.github.markzhai:blockcanary-no-op:$rootProject.releaseblock",
+            debugblock      : "com.github.markzhai:blockcanary-android:$rootProject.debugblock",
+            releaseblock    : "com.github.markzhai:blockcanary-no-op:$rootProject.releaseblock",
             //网络请求框架
-            volley          : "com.android.volley:volley:$rootProject.volley"
+            volley          : "com.android.volley:volley:$rootProject.volley",
+            cardView        : "com.android.support:cardview-v7:$rootProject.supportLibraryVersion",
+            fastjson        : "com.alibaba:fastjson:$rootProject.fastjson",
+            circleImageView: "de.hdodenhof:circleimageview:$rootProject.circleImageView",
     ]
 
 }

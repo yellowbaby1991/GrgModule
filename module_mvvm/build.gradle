@@ -55,5 +55,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':lib_common')
     implementation rootProject.ext.dependencies.recycleview
+    implementation rootProject.ext.dependencies.glide
+    implementation rootProject.ext.dependencies.circleImageView
+    implementation rootProject.ext.dependencies.cardView
     annotationProcessor rootProject.ext.dependencies.arouter_compiler
 }
