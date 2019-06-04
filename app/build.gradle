@@ -2,6 +2,10 @@ apply plugin: 'com.android.application'
 
 android {
 
+    dataBinding {
+        enabled = true
+    }
+
     compileSdkVersion rootProject.ext.android.compileSdkVersion
 
     defaultConfig {
@@ -21,6 +25,11 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    defaultConfig {
+        ndk {
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
         }
     }
 }

@@ -5,6 +5,10 @@ apply plugin: 'maven'
 
 android {
 
+    dataBinding {
+        enabled = true
+    }
+
     compileSdkVersion rootProject.ext.android.compileSdkVersion
 
     defaultConfig {

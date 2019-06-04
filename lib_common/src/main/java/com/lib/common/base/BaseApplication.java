@@ -18,11 +18,14 @@ import com.squareup.leakcanary.LeakCanary;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import xcrash.XCrash;
+
 /**
  * BaseApplication,包含以下功能
  * 1）内存泄漏检测
- * 2）崩溃收集但是不闪退
- * 3）集成阿里路由
+ * 2）UI堵塞检测
+ * 3）崩溃收集但是不闪退
+ * 4）集成阿里路由
  */
 
 public class BaseApplication extends Application {
@@ -36,17 +39,38 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
         instance = this;
+
+        //用于捕获UI阻塞
         BlockCanary.install(this, new AppBlockCanaryContext()).start();
+
+        //用于检测内存异常
         LeakCanary.install(this);
-        HttpHelper.init(new VolleyProcessor(this));
+
+        //用于捕获崩溃日志，和CrashRoach会冲突
+        //initXCrash();
+
+        //用于捕获崩溃防止闪退
         installCrashRoach();
+
+        //初始化网络请求工具
+        initHttpHelper();
+
+        //初始化路由
         initRouter();
-        registerGrgLog();
+
+        //初始化日志工具类
+        initGrgLog();
+
+    }
+
+    protected void initHttpHelper(){
+        HttpHelper.init(new VolleyProcessor(this));
     }
 
     //出现异常后不闪退，捕捉异常继续运行APP
-    private void installCrashRoach() {
+    protected void installCrashRoach() {
         final Thread.UncaughtExceptionHandler sysExcepHandler = Thread.getDefaultUncaughtExceptionHandler();
         final Toast toast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
 
@@ -123,8 +147,11 @@ public class BaseApplication extends Application {
         return getPackageName();
     }
 
-    //初始化日志控件
-    private void registerGrgLog() {
+    protected void initGrgLog() {
         GrgLog.init(BASE_PATH + getLogPath() + "/log/" + new SimpleDateFormat(GrgLog.DATE_FORMAT).format(new Date()));
+    }
+
+    protected void initXCrash(){
+        XCrash.init(this, new XCrash.InitParameters().setLogDir(BASE_PATH + getLogPath() + "/crash/" + new SimpleDateFormat(GrgLog.DATE_FORMAT).format(new Date())));
     }
 }

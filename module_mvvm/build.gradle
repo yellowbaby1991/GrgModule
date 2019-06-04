@@ -52,11 +52,11 @@ android {
 task allDeps(type: DependencyReportTask) {}
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':lib_common')
-    implementation rootProject.ext.dependencies.recycleview
-    implementation rootProject.ext.dependencies.glide
-    implementation rootProject.ext.dependencies.circleImageView
-    implementation rootProject.ext.dependencies.cardView
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api project(':lib_common')
+    api rootProject.ext.dependencies.recycleview
+    api rootProject.ext.dependencies.glide
+    api rootProject.ext.dependencies.circleImageView
+    api rootProject.ext.dependencies.cardView
     annotationProcessor rootProject.ext.dependencies.arouter_compiler
 }

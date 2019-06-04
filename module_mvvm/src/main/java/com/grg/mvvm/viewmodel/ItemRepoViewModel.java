@@ -6,8 +6,9 @@ import android.view.View;
 
 import com.grg.mvvm.RepositoryActivity;
 import com.grg.mvvm.model.Repository;
+import com.lib.common.base.BaseViewModel;
 
-public class ItemRepoViewModel extends BaseObservable implements ViewModel {
+public class ItemRepoViewModel extends BaseObservable implements BaseViewModel {
 
     private Context context;
     private Repository repository;

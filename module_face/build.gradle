@@ -6,6 +6,10 @@ if (isFaceModuleTest.toBoolean()) {
 
 android {
 
+    dataBinding {
+        enabled = true
+    }
+
     compileSdkVersion rootProject.ext.android.compileSdkVersion
 
     defaultConfig {

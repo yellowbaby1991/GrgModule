@@ -6,6 +6,10 @@ if (isMainModule.toBoolean()) {
 
 android {
 
+    dataBinding {
+        enabled = true
+    }
+
     compileSdkVersion rootProject.ext.android.compileSdkVersion
 
     defaultConfig {
@@ -19,6 +23,21 @@ android {
             }
         }
         multiDexEnabled true
+        if(isNeedFaceModule.toBoolean()){
+            buildConfigField "boolean", "isNeedFace", "true"
+        }else {
+            buildConfigField "boolean", "isNeedFace", "false"
+        }
+        if(isNeedMvvmModule.toBoolean()){
+            buildConfigField "boolean", "isNeedMvvm", "true"
+        }else{
+            buildConfigField "boolean", "isNeedMvvm", "false"
+        }
+        if(isNeedCardModule.toBoolean()){
+            buildConfigField "boolean", "isNeedCard", "true"
+        }else{
+            buildConfigField "boolean", "isNeedCard", "false"
+        }
     }
 
     sourceSets {

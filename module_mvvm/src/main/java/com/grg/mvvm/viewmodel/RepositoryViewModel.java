@@ -12,6 +12,7 @@ import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
 import com.grg.mvvm.model.Repository;
 import com.grg.mvvm.model.User;
+import com.lib.common.base.BaseViewModel;
 import com.lib.common.http.HttpHelper;
 import com.lib.common.http.interfaces.ICallBack;
 
@@ -20,7 +21,7 @@ import java.util.List;
 /**
  * ViewModel for the RepositoryActivity
  */
-public class RepositoryViewModel implements ViewModel {
+public class RepositoryViewModel implements BaseViewModel {
 
     private static final String TAG = "RepositoryViewModel";
 

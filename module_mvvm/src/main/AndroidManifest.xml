@@ -8,6 +8,9 @@
             android:label="@string/title_activity_mvvm"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".RepositoryActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

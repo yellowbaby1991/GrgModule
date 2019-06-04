@@ -13,12 +13,13 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.grg.mvvm.model.Repository;
+import com.lib.common.base.BaseViewModel;
 import com.lib.common.http.HttpHelper;
 import com.lib.common.http.interfaces.ICallBack;
 
 import java.util.List;
 
-public class MainViewModel implements ViewModel {
+public class MainViewModel implements BaseViewModel {
 
     private static final String TAG = "MainViewModel";
 

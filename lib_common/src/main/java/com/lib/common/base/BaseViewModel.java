@@ -1,9 +1,9 @@
-package com.grg.mvvm.viewmodel;
+package com.lib.common.base;
 
 /**
  * Interface that every ViewModel must implement
  */
-public interface ViewModel {
+public interface BaseViewModel {
 
     void destroy();
 

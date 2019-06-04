@@ -4,6 +4,10 @@ apply plugin: 'maven'
 
 android {
 
+    dataBinding {
+        enabled = true
+    }
+
     compileSdkVersion rootProject.ext.android.compileSdkVersion
 
     defaultConfig {
@@ -51,6 +55,7 @@ dependencies {
     api(rootProject.ext.dependencies.support_v4)
     api(rootProject.ext.dependencies.volley)
     api(rootProject.ext.dependencies.fastjson)
+    api(rootProject.ext.dependencies.xcrash)
 
     implementation files('libs/android-logging-log4j-1.0.3.jar')
     implementation files('libs/log4j-1.2.17.jar')
