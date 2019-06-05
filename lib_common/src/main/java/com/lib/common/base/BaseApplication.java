@@ -50,10 +50,10 @@ public class BaseApplication extends Application {
         LeakCanary.install(this);
 
         //用于捕获崩溃日志，和CrashRoach会冲突
-        //initXCrash();
+        initXCrash();
 
         //用于捕获崩溃防止闪退
-        installCrashRoach();
+        //installCrashRoach();
 
         //初始化网络请求工具
         initHttpHelper();

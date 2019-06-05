@@ -13,14 +13,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.Toolbar
+        <com.xuexiang.xui.widget.actionbar.TitleBar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/xui_config_color_titlebar"
+            app:tb_barHeight="65dp"
+            app:tb_sideTextPadding="20dp"
+            app:tb_actionPadding="20dp"
+            app:tb_leftText="GrgModule"/>
+
+        <com.grg.main.view.GrgOrderView
+            android:layout_centerInParent="true"
+            android:id="@+id/grg_order_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </com.grg.main.view.GrgOrderView>
+
+       <!-- <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             app:title="GrgModule"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>-->
 
 
         <LinearLayout

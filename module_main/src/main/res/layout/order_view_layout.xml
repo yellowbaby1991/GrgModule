@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <com.xuexiang.xui.widget.layout.XUILinearLayout
+        android:layout_width="700dp"
+        android:layout_height="550dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:background="@color/xui_config_color_white"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:xui_borderColor="?attr/xui_config_color_separator_light"
+        app:xui_outerNormalColor="?attr/xui_config_color_background"
+        app:xui_showBorderOnlyBeforeL="true">
+
+        <com.xuexiang.xui.widget.layout.XUILinearLayout
+            app:xui_useThemeGeneralShadowElevation="true"
+            android:id="@+id/item_views_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </com.xuexiang.xui.widget.layout.XUILinearLayout>
+
+        <com.xuexiang.xui.widget.layout.XUILinearLayout
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="vertical"
+            app:xui_borderWidth = "2dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            app:xui_borderColor = "@color/primary_light"
+            app:xui_useThemeGeneralShadowElevation="false">
+
+            <ScrollView
+                android:id="@+id/choice_items_sv"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp">
+                <LinearLayout
+                    android:id="@+id/choice_items_ll"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp">
+
+
+                </LinearLayout>
+            </ScrollView>
+
+            <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                android:id="@+id/total_money_stv"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                app:sCenterTextString="合计 10 元" />
+
+            <com.xuexiang.xui.widget.button.roundbutton.RoundButton
+                style="@style/RoundButton.Orange"
+                android:id="@+id/cancel_bt"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:text="整单取消" />
+
+            <com.xuexiang.xui.widget.button.roundbutton.RoundButton
+                style="@style/RoundButton.Orange"
+                android:id="@+id/submit_bt"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:text="用餐结算" />
+
+        </com.xuexiang.xui.widget.layout.XUILinearLayout>
+
+
+    </com.xuexiang.xui.widget.layout.XUILinearLayout>
+
+</layout>

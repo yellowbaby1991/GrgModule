@@ -11,6 +11,9 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.grg.main.databinding.ActivityHomeBinding;
 import com.grg.main.viewmodel.HomeViewModel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Route(path = "/home/activity")
 public class HomeActivity extends AppCompatActivity {
 
@@ -28,6 +31,16 @@ public class HomeActivity extends AppCompatActivity {
         ARouter.getInstance().inject(this);
 
 
+        testGrgOrderView();
+    }
+
+    private void testGrgOrderView() {
+        List<String> list =new ArrayList<>();
+        for (int i = 0; i < 12; i++) {
+            list.add(i + " 元");
+        }
+
+        mBinding.grgOrderView.setItems(list);
     }
 
     public void idcard(View view){
