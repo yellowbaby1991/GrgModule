@@ -11,16 +11,5 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
-    <style name="ButtonView.Orange">
-        <item name="textSolidColor">@color/darkorange</item>
-        <item name="textSelectedSolidColor">@color/orange</item>
-        <item name="android:text">@string/xui_lab_button_reset</item>
-    </style>
 
-    <style name="RoundButton.Orange">
-        <item name="rb_backgroundColor">@color/orange</item>
-        <item name="rb_borderWidth">0dp</item>
-        <item name="android:text">@string/xui_lab_button_reset</item>
-        <item name="android:textColor">@color/xui_default_round_btn_white_text</item>
-    </style>
 </resources>

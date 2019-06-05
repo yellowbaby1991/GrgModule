@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import com.grg.main.R;
 import com.grg.main.databinding.OrderViewLayoutBinding;
 import com.lib.common.utils.ToastUtils;
+import com.xuexiang.xui.utils.ViewUtils;
 import com.xuexiang.xui.widget.button.ButtonView;
 
 import java.util.List;
@@ -76,6 +77,7 @@ public class GrgOrderView extends RelativeLayout implements View.OnClickListener
                         addChoiceItems(buttonView.getText().toString());
                     }
                 });
+                ViewUtils.fadeIn(itemView,1000,null);
                 rowsContainLl.addView(itemView);
             }
             mBinding.itemViewsLl.addView(rowsContainLl);
@@ -87,8 +89,11 @@ public class GrgOrderView extends RelativeLayout implements View.OnClickListener
     private void addChoiceItems(String item) {
         mTotolMoney += Integer.valueOf(item.replace(" 元", ""));
         RelativeLayout itemView = createChoiceItemView(item);
+        ViewUtils.slideIn(itemView,500,null, ViewUtils.Direction.TOP_TO_BOTTOM);
         mBinding.choiceItemsLl.addView(itemView, 0);
         mBinding.totalMoneyStv.setCenterString("合计 " + mTotolMoney + " 元");
+        ViewUtils.fadeIn( mBinding.totalMoneyStv,1000,null);
+
     }
 
     private RelativeLayout createChoiceItemView(String item) {
