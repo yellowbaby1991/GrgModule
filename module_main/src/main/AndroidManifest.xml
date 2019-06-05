@@ -5,7 +5,7 @@
     <application>
         <activity
             android:name=".HomeActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/xuiAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

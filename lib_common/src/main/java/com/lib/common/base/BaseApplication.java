@@ -14,6 +14,7 @@ import com.lib.common.http.HttpHelper;
 import com.lib.common.http.processor.VolleyProcessor;
 import com.lib.common.log.GrgLog;
 import com.squareup.leakcanary.LeakCanary;
+import com.xuexiang.xui.XUI;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -62,6 +63,9 @@ public class BaseApplication extends Application {
 
         //初始化日志工具类
         initGrgLog();
+
+        XUI.init(this); //初始化UI框架
+        XUI.debug(true);  //开启UI框架调试日志
 
     }
 

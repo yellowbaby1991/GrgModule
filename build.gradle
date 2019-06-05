@@ -20,6 +20,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url "https://jitpack.io" }
         //maven { url 'http://localhost:8081/repository/maven-public/' }
         maven { url 'https://raw.githubusercontent.com/yellowbaby1991/GrgModule/master' }
     }

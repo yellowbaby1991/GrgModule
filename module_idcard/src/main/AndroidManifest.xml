@@ -4,6 +4,7 @@
     <application>
         <activity
             android:name=".IdCardActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="landscape" />
     </application>
 

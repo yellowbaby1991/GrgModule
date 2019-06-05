@@ -1,5 +1,12 @@
 <resources>
 
+    <style name="xuiAppTheme" parent="XUITheme.Tablet.Big">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:textColor">@color/primary_text</item>
+    </style>
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>

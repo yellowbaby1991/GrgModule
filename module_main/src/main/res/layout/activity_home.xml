@@ -29,32 +29,39 @@
             android:layout_centerInParent="true"
             android:orientation="vertical">
 
-            <Button
+            <com.xuexiang.xui.widget.button.ButtonView
                 android:id="@+id/idcardmodule_bt"
+                style="@style/ButtonView.Blue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="30dp"
                 android:visibility="@{viewModel.idCardVisibility}"
                 android:onClick="idcard"
-                android:text="身份证模块"
-                android:textSize="30dp"/>
+                android:layout_marginTop="20dp"
+                android:text="身份证模块" />
 
-            <Button
+            <com.xuexiang.xui.widget.button.ButtonView
                 android:id="@+id/facemodule_bt"
+                style="@style/ButtonView.Blue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
                 android:visibility="@{viewModel.faceVisibility}"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:onClick="face"
-                android:text="人脸识别模块"
-                android:textSize="30dp"/>
+                android:layout_marginTop="20dp"
+                android:text="人脸识别模块" />
 
-            <Button
+            <com.xuexiang.xui.widget.button.ButtonView
                 android:id="@+id/mvvmmodule_bt"
-                android:visibility="@{viewModel.mvvmVisibility}"
+                style="@style/ButtonView.Blue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:visibility="@{viewModel.mvvmVisibility}"
                 android:onClick="mvvm"
-                android:text="Mvvm模块"
-                android:textSize="30dp"/>
+                android:layout_marginTop="20dp"
+                android:text="Mvvm模块" />
+
 
         </LinearLayout>
 

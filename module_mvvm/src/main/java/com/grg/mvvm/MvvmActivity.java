@@ -4,9 +4,11 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
@@ -35,6 +37,12 @@ public class MvvmActivity extends AppCompatActivity implements MainViewModel.Dat
         mMainViewModel =new MainViewModel(this,this);
         mBinding.setViewModel(mMainViewModel);
         setSupportActionBar(mBinding.toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeButtonEnabled(true);
+
+        }
         setupRecyclerView(mBinding.reposRecyclerView);
         ARouter.getInstance().inject(this);
 
@@ -58,5 +66,14 @@ public class MvvmActivity extends AppCompatActivity implements MainViewModel.Dat
     private void hideSoftKeyboard() {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(mBinding.editTextUsername.getWindowToken(), 0);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

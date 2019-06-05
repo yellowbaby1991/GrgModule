@@ -24,7 +24,8 @@ ext {
             volley = "1.0.0",
             fastjson = "1.1.56.android",
             circleImageView = "1.3.0",
-            xcrash = "2.1.3"
+            xcrash = "2.1.3",
+            xui = "1.0.4"
     ]
 
     dependencies = [
@@ -53,7 +54,9 @@ ext {
             fastjson        : "com.alibaba:fastjson:$rootProject.fastjson",
             circleImageView : "de.hdodenhof:circleimageview:$rootProject.circleImageView",
             //爱奇艺的奔溃日志捕捉库，可以捕获native错误
-            xcrash          : "com.iqiyi.xcrash:xcrash-android-lib:$rootProject.xcrash"
+            xcrash          : "com.iqiyi.xcrash:xcrash-android-lib:$rootProject.xcrash",
+            //超强的UI库
+            xui             : "com.github.xuexiangjys:XUI:$rootProject.xui",
     ]
 
 }

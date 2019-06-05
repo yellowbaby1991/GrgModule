@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:layout_centerInParent="true"
-        android:textSize="20sp"
-        android:text="Module_Idcard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <data>
+        <variable
+            name="viewModel"
+            type="com.grg.idcard.viewmodel.IdCardViewModel"/>
+    </data>
 
-</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            app:title="身份证模块"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+
+    </RelativeLayout>
+
+</layout>
