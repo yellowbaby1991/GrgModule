@@ -32,10 +32,18 @@
     </style>
 
     <style name="ButtonView.Orange">
-        <item name="textSolidColor">@color/darkorange</item>
-        <item name="textSelectedSolidColor">@color/orange</item>
+        <item name="textSolidColor">@color/orange</item>
+        <item name="textSelectedSolidColor">@color/darkorange</item>
         <item name="android:text">@string/xui_lab_button_reset</item>
     </style>
+
+
+    <style name="ButtonView.Red">
+        <item name="textSolidColor">@color/red</item>
+        <item name="textSelectedSolidColor">@color/darkred</item>
+        <item name="android:text">@string/xui_lab_button_reset</item>
+    </style>
+
 
     <style name="RoundButton.Orange">
         <item name="rb_backgroundColor">@color/orange</item>
@@ -47,7 +55,7 @@
     <style name="RoundButton.Red">
         <item name="rb_backgroundColor">@color/red</item>
         <item name="rb_borderWidth">0dp</item>
-        <item name="android:text">@string/xui_lab_button_reset</item>
-        <item name="android:textColor">@color/darkorange</item>
+        <item name="android:text">@string/xui_lab_button_cancel</item>
+        <item name="android:textColor">@color/xui_default_round_btn_white_text</item>
     </style>
 </resources>
