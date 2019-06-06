@@ -25,9 +25,9 @@
 
     <style name="LightEditText">
         <item name="colorControlNormal">@color/white_transparent</item>
-        <item name="colorControlActivated">@color/white</item>
-        <item name="colorControlHighlight">@color/white</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="colorControlActivated">@color/white_transparent</item>
+        <item name="colorControlHighlight">@color/white_transparent</item>
+        <item name="android:textColor">@color/white_transparent</item>
         <item name="android:textColorHint">@color/white_transparent</item>
     </style>
 
@@ -42,5 +42,12 @@
         <item name="rb_borderWidth">0dp</item>
         <item name="android:text">@string/xui_lab_button_reset</item>
         <item name="android:textColor">@color/xui_default_round_btn_white_text</item>
+    </style>
+
+    <style name="RoundButton.Red">
+        <item name="rb_backgroundColor">@color/red</item>
+        <item name="rb_borderWidth">0dp</item>
+        <item name="android:text">@string/xui_lab_button_reset</item>
+        <item name="android:textColor">@color/darkorange</item>
     </style>
 </resources>
