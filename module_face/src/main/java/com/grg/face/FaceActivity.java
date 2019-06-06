@@ -8,6 +8,7 @@ import android.view.View;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.grg.face.cameraview.FaceCheckCameraActivity;
+import com.grg.face.cameraview.TwoFaceCheckCameraActivity;
 import com.grg.face.core.FaceAuth;
 import com.grg.face.custom.CustomActivity;
 import com.grg.face.living.LivingCameraActivity;
@@ -57,6 +58,12 @@ public class FaceActivity extends AppCompatActivity {
 
     public void faceCheckCamera(View view) {
         Intent intent = new Intent(this, FaceCheckCameraActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void twofaceCheckCamera(View view){
+        Intent intent = new Intent(this, TwoFaceCheckCameraActivity.class);
         startActivity(intent);
         finish();
     }

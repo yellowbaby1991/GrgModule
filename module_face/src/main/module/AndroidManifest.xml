@@ -33,6 +33,8 @@
         </activity>
         <activity android:name=".custom.CustomActivity">
         </activity>
+        <activity android:name=".cameraview.TwoFaceCheckCameraActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -8,22 +8,19 @@ import android.os.Process;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.grg.face.R;
 import com.grg.face.callback.CompareCallback;
 import com.grg.face.core.FaceAuth;
-import com.grg.face.view.FaceCheckCameraView;
-
+import com.grg.face.view.TwoFaceCheckCameraView;
 
 /**
- * 带人脸追踪框的单目FaceCheckCameraView
+ * 带人脸追踪框的双目FaceCheckCameraView
  */
-public class FaceCheckCameraActivity extends AppCompatActivity {
+public class TwoFaceCheckCameraActivity extends AppCompatActivity {
 
     private ImageView mFaceIv, mImageView;
 
-    private FaceCheckCameraView mFaceCheckCameraView;
+    private TwoFaceCheckCameraView mFaceCheckCameraView;
 
     private CompareCallback mCompareCallback = new CompareCallback() {
         @Override
@@ -46,7 +43,7 @@ public class FaceCheckCameraActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_facecheck_camera);
+        setContentView(R.layout.activity_twofacecheck_camera);
 
         initView();
 
@@ -56,7 +53,7 @@ public class FaceCheckCameraActivity extends AppCompatActivity {
         FaceAuth.authByLocal(this, license, new FaceAuth.AuthCallBack() {
             @Override
             public void authSuccess() {
-                mFaceCheckCameraView.startPreview(0, 640, 480);
+                mFaceCheckCameraView.startPreview(0,1, 640, 480);
                 mFaceCheckCameraView.isShowFrame(true);//是否打开默认画框
                 mFaceCheckCameraView.setCompareCallback(mCompareCallback);
             }

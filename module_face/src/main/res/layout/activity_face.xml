@@ -26,6 +26,14 @@
     <Button
         android:layout_margin="30dp"
         android:textSize="20dp"
+        android:onClick="twofaceCheckCamera"
+        android:text="双目带画框人脸检测"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:layout_margin="30dp"
+        android:textSize="20dp"
         android:onClick="livingCamera"
         android:text="双目活体检测"
         android:layout_width="wrap_content"

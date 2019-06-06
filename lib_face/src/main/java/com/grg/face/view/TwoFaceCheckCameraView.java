@@ -21,9 +21,9 @@ import static com.aibee.auth.AibeeAuth.AuthState.AuthStateSuc;
 
 
 /**
- * 带人脸检测画框的单目cameraview
+ * 带人脸检测画框的双目活体cameraview
  */
-public class FaceCheckCameraView extends RelativeLayout {
+public class TwoFaceCheckCameraView extends RelativeLayout {
 
     private boolean mIsShowFrame = true; //是否画框
 
@@ -34,24 +34,24 @@ public class FaceCheckCameraView extends RelativeLayout {
     private final static int SHOW_FRAME = 1;//画框
     private final static int HIDE_FRAME = 2;//隐藏框
 
-    private static FaceCheckCameraView INSTANCE = null;
+    private static TwoFaceCheckCameraView INSTANCE = null;
 
     protected FaceView mFvCam; //人脸框
 
     private FaceDetecter mFaceDetecter;
 
-    private CameraTextureView mCameraVtv;
+    private CameraTextureView mCameraVtv1,mCameraVtv2;
 
     private RelativeLayout mCameraRl;
 
-    public FaceCheckCameraView(Context context) {
+    public TwoFaceCheckCameraView(Context context) {
         this(context, null);
     }
 
-    public FaceCheckCameraView(Context context, AttributeSet attrs) {
+    public TwoFaceCheckCameraView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        LayoutInflater.from(context).inflate(R.layout.camera_texture_withface, this, true);
+        LayoutInflater.from(context).inflate(R.layout.twocamera_texture_withface, this, true);
 
         INSTANCE = this;
 
@@ -65,24 +65,27 @@ public class FaceCheckCameraView extends RelativeLayout {
 
     /**
      * 打开分辨率640×480的摄像头
-     * @param cameraID 摄像头编号
+     * @param cameraID1 可见光摄像头编号
+     * @param cameraID2 红外光摄像头编号
      */
-    public void startPreview(int cameraID) {
-        startPreview(cameraID, 640, 480);
+    public void startPreview(int cameraID1,int cameraID2) {
+        startPreview(cameraID1,cameraID2, 640, 480);
     }
 
     /**
      * 打开指定分辨率的摄像头
-     * @param cameraID 摄像头编号
+     * @param cameraID1 可见光摄像头编号
+     * @param cameraID2 红外光摄像头编号
      * @param width 宽
      * @param height 高
      */
-    public void startPreview(int cameraID, int width, int height) {
+    public void startPreview(int cameraID1,int cameraID2, int width, int height) {
         if (!isAuthSuc()) {
             Toast.makeText(getContext(), "算法授权未成功", Toast.LENGTH_SHORT).show();
             return;
         }
-        mCameraVtv.startPreview(cameraID, width, height);
+        mCameraVtv1.startPreview(cameraID1, width, height);
+        mCameraVtv2.startPreview(cameraID2, width, height);
         initFaceDetecter();
         setDecterToCamera();
     }
@@ -102,7 +105,8 @@ public class FaceCheckCameraView extends RelativeLayout {
 
 
     private void initView() {
-        mCameraVtv = findViewById(R.id.camera_vtv);
+        mCameraVtv1 = findViewById(R.id.camera_vtv1);
+        mCameraVtv2 = findViewById(R.id.camera_vtv2);
         mCameraRl = findViewById(R.id.camera_rl);
         mFvCam = new FaceView(getContext(), null);
         mCameraRl.addView(mFvCam);
@@ -110,7 +114,7 @@ public class FaceCheckCameraView extends RelativeLayout {
 
     private void initFaceDetecter() {
         mFaceDetecter = createFaceDetater();
-        mFaceDetecter.setTwoCamera(false);
+        mFaceDetecter.setTwoCamera(true);
         //mFaceDetecter.setCameraRotate(0);
         mFaceDetecter.init(new CompareCallback() {
             @Override
@@ -138,7 +142,7 @@ public class FaceCheckCameraView extends RelativeLayout {
     }
 
     private void setDecterToCamera() {
-        mCameraVtv.setOnPreviewCallback(new CameraTextureView.OnPreviewCallback() {
+        mCameraVtv1.setOnPreviewCallback(new CameraTextureView.OnPreviewCallback() {
             @Override
             public void onPreviewFrame(byte[] data, Camera camera) {
                 if (camera != null) {
@@ -147,10 +151,23 @@ public class FaceCheckCameraView extends RelativeLayout {
 
             }
         });
+        mCameraVtv2.setOnPreviewCallback(new CameraTextureView.OnPreviewCallback() {
+            @Override
+            public void onPreviewFrame(byte[] data, Camera camera) {
+                if (camera != null) {
+                    mFaceDetecter.onPreviewFrameRed(data, camera);
+                }
+
+            }
+        });
     }
 
-    public CameraTextureView getCameraVtv() {
-        return mCameraVtv;
+    public CameraTextureView getCameraVtv1() {
+        return mCameraVtv1;
+    }
+
+    public CameraTextureView getCameraVtv2() {
+        return mCameraVtv2;
     }
 
 
@@ -187,7 +204,7 @@ public class FaceCheckCameraView extends RelativeLayout {
      */
     protected void showFrame(RectF rectF) {
         mFvCam.clearFaces();
-        int cameraWidth = mCameraVtv.getCameraWidth();//相机分辨率宽
+        int cameraWidth = mCameraVtv1.getCameraWidth();//相机分辨率宽
         int width = getWidth();//控件实际物理宽
         float rate = (float) width / (float) cameraWidth;
 
