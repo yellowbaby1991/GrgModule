@@ -7,6 +7,8 @@ import com.grg.face.utils.FileUtils;
 
 import java.io.File;
 
+import static com.aibee.auth.AibeeAuth.AuthState.AuthStateSuc;
+
 /**
  * 用于人脸算法授权
  */
@@ -21,6 +23,19 @@ public class FaceAuth {
      */
     public static String getDeviceId(Context context){
         return com.aibee.auth.Util.getDeviceID(context);
+    }
+
+    /**
+     * 是否已经授权成功
+     * @return 授权结果
+     */
+    public static boolean isAuthSuc(){
+        AibeeAuth.AuthState state = AibeeAuth.getsInstance().getState();
+        if (state == AuthStateSuc) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
