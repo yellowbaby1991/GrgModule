@@ -111,10 +111,12 @@ public class CameraTextureView extends TextureView {
 
             public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
                 mIsRelease = true;
-                mCamera.setPreviewCallback(null);
-                mCamera.stopPreview();
-                mCamera.release();
-                mCamera = null;
+                if (mCamera != null){
+                    mCamera.setPreviewCallback(null);
+                    mCamera.stopPreview();
+                    mCamera.release();
+                    mCamera = null;
+                }
                 return true;
             }
 

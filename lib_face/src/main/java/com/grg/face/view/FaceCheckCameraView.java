@@ -87,6 +87,10 @@ public class FaceCheckCameraView extends RelativeLayout {
         setDecterToCamera();
     }
 
+    public void stopPreview(){
+        mCameraVtv.stopCamera();
+    }
+
     public void setCompareCallback(CompareCallback compareCallback) {
         mCompareCallback = compareCallback;
     }
