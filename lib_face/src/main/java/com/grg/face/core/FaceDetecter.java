@@ -25,6 +25,8 @@ import java.util.concurrent.Semaphore;
  */
 public class FaceDetecter {
 
+    private boolean working = true;
+
     protected static FaceTracker mTracker;
 
     protected static FaceIdentifier faceIdentifier;
@@ -73,7 +75,7 @@ public class FaceDetecter {
 
                 Thread.currentThread().setName("FaceDecter");
 
-                while (true) {
+                while (working) {
                     try {
                         mSemaphore.acquire();
                         if (mTracker != null) {
@@ -373,4 +375,8 @@ public class FaceDetecter {
         return Bitmap.createBitmap(srcBitmap, 0, 0, srcBitmap.getWidth(), srcBitmap.getHeight(), matrix, true);
     }
 
+    public void release() {
+        mSemaphore.release();
+        working = false;
+    }
 }
