@@ -131,6 +131,9 @@ public class FaceCheckCameraView extends RelativeLayout {
         mFaceDetecter.init(new CompareCallback() {
             @Override
             public void showFaceFrame(RectF rectF) {
+                if (ingoreNum < 2){
+                    return;
+                }
                 if (mIsShowFrame && mAllowedShowFace) {
                     //Log.d(TAG, "检测到人脸");
                     onSendMsg(SHOW_FRAME, rectF);
