@@ -44,6 +44,10 @@ public class FaceCheckCameraView extends RelativeLayout {
 
     private RelativeLayout mCameraRl;
 
+    private int ingoreNum = 0;//丢弃前两帧废数据
+
+    private boolean mAllowedShowFace = true;
+
     public FaceCheckCameraView(Context context) {
         this(context, null);
     }
@@ -113,25 +117,36 @@ public class FaceCheckCameraView extends RelativeLayout {
         mCameraRl.addView(mFvCam);
     }
 
+    public void setAllowedShowFace(boolean allowedShowFace) {
+        mAllowedShowFace = allowedShowFace;
+    }
+
+    public boolean isAllowedShowFace() {
+        return mAllowedShowFace;
+    }
+
     private void initFaceDetecter() {
         mFaceDetecter = createFaceDetater();
         mFaceDetecter.setTwoCamera(false);
-        //mFaceDetecter.setCameraRotate(0);
         mFaceDetecter.init(new CompareCallback() {
             @Override
             public void showFaceFrame(RectF rectF) {
-                if (mIsShowFrame) {
-                    Log.d(TAG, "检测到人脸");
+                if (mIsShowFrame && mAllowedShowFace) {
+                    //Log.d(TAG, "检测到人脸");
                     onSendMsg(SHOW_FRAME, rectF);
                 }
-                if (mCompareCallback != null) {
+                if (mCompareCallback != null && mAllowedShowFace) {
                     mCompareCallback.showFaceFrame(rectF);
                 }
             }
 
             @Override
             public void showFace(Bitmap bitmap, Bitmap pribitmap) {
-                if (mCompareCallback != null) {
+                if (ingoreNum < 2){
+                    ingoreNum++;
+                    return;
+                }
+                if (mCompareCallback != null && mAllowedShowFace) {
                     mCompareCallback.showFace(bitmap, pribitmap);
                 }
             }
