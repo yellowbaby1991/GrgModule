@@ -67,11 +67,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    //implementation 'com.yb:lib_common:1.0.0'
-
-/*    api(rootProject.ext.dependencies.appcompatV7)
-    api(rootProject.ext.dependencies.support_v4)*/
 
     implementation project(':lib_common')
+    implementation project(':lib_led_s005')
     annotationProcessor rootProject.ext.dependencies.arouter_compiler
 }

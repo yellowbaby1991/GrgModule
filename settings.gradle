@@ -1,5 +1,9 @@
 include ':app'
 
+if(isNeedLedS005Module.toBoolean() || isLedS005ModuleTest.toBoolean()){
+    include ':lib_led_s005'
+}
+
 if(isNeedCardModule.toBoolean() || isCardModuleTest.toBoolean()){
     include ':module_idcard'
     if (isCardMax2.toBoolean()){

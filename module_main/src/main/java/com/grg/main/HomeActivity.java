@@ -10,12 +10,15 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.grg.main.databinding.ActivityHomeBinding;
 import com.grg.main.viewmodel.HomeViewModel;
+import com.weijuso.hardware.Keypad;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Route(path = "/home/activity")
 public class HomeActivity extends AppCompatActivity {
+
+    public static Keypad mKeypad;
 
     private static final String TAG = "MainActivity";
 
@@ -28,8 +31,15 @@ public class HomeActivity extends AppCompatActivity {
         mBinding.setViewModel(new HomeViewModel(this));
 
 
+
+
         ARouter.getInstance().inject(this);
 
+        if (mKeypad == null) {
+            mKeypad = new Keypad();
+        }
+
+        mKeypad.ledOpen(false);
 
         testGrgOrderView();
     }
