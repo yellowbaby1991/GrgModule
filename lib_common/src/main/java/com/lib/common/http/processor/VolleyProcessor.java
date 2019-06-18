@@ -95,12 +95,13 @@ public class VolleyProcessor implements IhttpProcessor {
 
     @NonNull
     //处理中文乱码
-    private String dealString(String response) {
-        try {
+    protected String dealString(String response) {
+        /*try {
             response=new String(response.getBytes("iso-8859-1"), "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
-        } return response;
+        }*/
+        return response;
     }
 
 }
