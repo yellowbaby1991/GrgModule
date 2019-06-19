@@ -96,16 +96,21 @@ public class SingleFaceCameraView  extends RelativeLayout implements CameraView{
         mFaceDetecter.setTwoCamera(false);
         mFaceDetecter.init(new FaceDetecter.FaceDetecterCallback() {
             @Override
-            public void getFaceLocation(int[] faceRect) {
+            public void getFaceLocation(RectF rectF) {
                 if (ingoreNum < 2){
                     return;
                 }
                 if (mIsShowFrame && mIsOpenCheckFace) {
-                    mFrameDraw.drawBoundingBox(faceRect, 1, Color.WHITE);
+                    int cameraWidth = mCameraVtv.getCameraWidth();//相机分辨率宽
+                    int width = getWidth();//控件实际物理宽
+                    float rate = (float) width / (float) cameraWidth;
+                    RectF temp = new RectF(width - rectF.right * rate, rectF.top * rate, width - rectF.left * rate, rectF.bottom * rate);
+                    //RectF temp = new RectF(rectF.right * rate, rectF.top * rate, rectF.left * rate, rectF.bottom * rate);
+                    mFrameDraw.drawBoundingBox(temp, 1, Color.WHITE);
                     //mFrameDraw.clearDraw();
                 }
                 if (mFaceCheckCallback != null && mIsOpenCheckFace) {
-                    mFaceCheckCallback.getFaceLocation(faceRect);
+                    mFaceCheckCallback.getFaceLocation(rectF);
                 }
             }
 

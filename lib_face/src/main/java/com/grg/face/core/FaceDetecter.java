@@ -187,7 +187,7 @@ public class FaceDetecter {
             la[1] = (int) rectF.top;
             la[2] = (int) rectF.right;
             la[3] = (int) rectF.bottom;
-            compareCallback.getFaceLocation(faceInfo.getRectPoints());
+            compareCallback.getFaceLocation(rectF);
 
             //Log.e("TAG", "====人脸=====");
 
@@ -385,7 +385,7 @@ public class FaceDetecter {
          * 返回人脸坐标，用于画框
          * @param faceRect
          */
-        void getFaceLocation(int[] faceRect);
+        void getFaceLocation(RectF faceRect);
 
         /**
          * 返回人脸图和原图

@@ -9,7 +9,7 @@ public interface FaceCheckCallback {
      * 返回人脸坐标，用于画框
      * @param faceRect
      */
-    void getFaceLocation(int[] faceRect);
+    void getFaceLocation(RectF faceRect);
 
     /**
      * 返回人脸图和原图

@@ -25,7 +25,7 @@ public class SingleFaceCameraViewActivity extends AppCompatActivity {
     private FaceCheckCallback mFaceCheckCallback = new FaceCheckCallback() {
 
         @Override
-        public void getFaceLocation(int[] faceRect) {
+        public void getFaceLocation(RectF faceRect) {
 
         }
 
