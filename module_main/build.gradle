@@ -69,6 +69,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(':lib_common')
+
     implementation project(':lib_led_s005')
+
     annotationProcessor rootProject.ext.dependencies.arouter_compiler
 }

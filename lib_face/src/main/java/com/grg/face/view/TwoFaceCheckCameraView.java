@@ -44,6 +44,16 @@ public class TwoFaceCheckCameraView extends RelativeLayout {
 
     private RelativeLayout mCameraRl;
 
+    private boolean mAllowedShowFace = true;
+
+    public void setAllowedShowFace(boolean allowedShowFace) {
+        mAllowedShowFace = allowedShowFace;
+    }
+
+    public boolean isAllowedShowFace() {
+        return mAllowedShowFace;
+    }
+
     public TwoFaceCheckCameraView(Context context) {
         this(context, null);
     }
@@ -119,18 +129,18 @@ public class TwoFaceCheckCameraView extends RelativeLayout {
         mFaceDetecter.init(new CompareCallback() {
             @Override
             public void showFaceFrame(RectF rectF) {
-                if (mIsShowFrame) {
+                if (mIsShowFrame && mAllowedShowFace) {
                     Log.d(TAG, "检测到人脸");
                     onSendMsg(SHOW_FRAME, rectF);
                 }
-                if (mCompareCallback != null) {
+                if (mCompareCallback != null && mAllowedShowFace) {
                     mCompareCallback.showFaceFrame(rectF);
                 }
             }
 
             @Override
             public void showFace(Bitmap bitmap, Bitmap pribitmap) {
-                if (mCompareCallback != null) {
+                if (mCompareCallback != null && mAllowedShowFace) {
                     mCompareCallback.showFace(bitmap, pribitmap);
                 }
             }
