@@ -70,7 +70,7 @@ dependencies {
 
     implementation project(':lib_common')
 
-    implementation project(':lib_led_s005')
+    //implementation project(':lib_led_s005')
 
     annotationProcessor rootProject.ext.dependencies.arouter_compiler
 }
