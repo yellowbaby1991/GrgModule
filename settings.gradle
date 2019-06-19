@@ -25,5 +25,5 @@ if(isNeedMvvmModule.toBoolean() || isMvvmModuleTest.toBoolean()){
 
 include ':module_main'
 include ':lib_common'
-include ':lib_uploadarr'  //上传faceSDK和authSDK用的
+//include ':lib_uploadarr'  //上传faceSDK和authSDK用的
 
