@@ -7,22 +7,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.grg.face.view.CameraTextureView
-        android:id="@+id/camera_vtv"
+    <com.grg.face.view.SingleFaceCameraView
+        android:id="@+id/camera_view"
         android:layout_width="640dp"
-        android:layout_height="480dp"/>
+        android:layout_height="480dp">
+    </com.grg.face.view.SingleFaceCameraView>
 
     <ImageView
-        android:layout_marginLeft="20dp"
         android:id="@+id/face_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <ImageView
-        android:layout_marginLeft="20dp"
         android:id="@+id/img_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-
 
 </LinearLayout>

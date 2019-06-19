@@ -15,7 +15,6 @@ import com.aibee.face.facesdk.FaceSDK;
 import com.aibee.face.facesdk.FaceTracker;
 import com.aibee.face.facesdk.FaceVerifyData;
 import com.grg.face.bean.YuvData;
-import com.grg.face.callback.CompareCallback;
 
 import java.util.concurrent.Semaphore;
 
@@ -55,7 +54,7 @@ public class FaceDetecter {
 
     private Semaphore mSemaphore = new Semaphore(0);
 
-    private CompareCallback compareCallback;  //回调
+    private FaceDetecterCallback compareCallback;  //回调
 
     private int width; //视频分辨率宽
 
@@ -65,7 +64,7 @@ public class FaceDetecter {
         this.cameraRotate = cameraRotate;
     }
 
-    public void init(CompareCallback compareCallback, Context context) {
+    public void init(FaceDetecterCallback compareCallback, Context context) {
         mContext = context;
         this.compareCallback = compareCallback;
         init(isTwoCamera);
@@ -188,7 +187,7 @@ public class FaceDetecter {
             la[1] = (int) rectF.top;
             la[2] = (int) rectF.right;
             la[3] = (int) rectF.bottom;
-            compareCallback.showFaceFrame(rectF);
+            compareCallback.getFaceLocation(faceInfo.getRectPoints());
 
             //Log.e("TAG", "====人脸=====");
 
@@ -210,7 +209,7 @@ public class FaceDetecter {
                         pribitmap.setPixels(pridata, 0, width, 0, 0, width, height);
                         bitmap = mirrorConvert(bitmap, 0);
                         pribitmap = mirrorConvert(pribitmap, 0);
-                        compareCallback.showFace(bitmap, pribitmap);
+                        compareCallback.getFace(bitmap, pribitmap);
                         //Log.e("TAG", "====活体==========================================");
                     }
                 }
@@ -254,7 +253,7 @@ public class FaceDetecter {
                         Bitmap bitmap = Bitmap.createBitmap(pribitmap, left, top, w, h);
                         bitmap = mirrorConvert(bitmap, 0);
                         pribitmap = mirrorConvert(pribitmap, 0);
-                        compareCallback.showFace(bitmap, pribitmap);
+                        compareCallback.getFace(bitmap, pribitmap);
                     }
                 }
             }
@@ -378,5 +377,22 @@ public class FaceDetecter {
     public void release() {
         mSemaphore.release();
         working = false;
+    }
+
+    public interface FaceDetecterCallback {
+
+        /**
+         * 返回人脸坐标，用于画框
+         * @param faceRect
+         */
+        void getFaceLocation(int[] faceRect);
+
+        /**
+         * 返回人脸图和原图
+         * @param bitmap 人脸图
+         * @param pribitmap 原图
+         */
+        void getFace(Bitmap bitmap, Bitmap pribitmap);
+
     }
 }

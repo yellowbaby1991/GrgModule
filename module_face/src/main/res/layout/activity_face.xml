@@ -18,7 +18,7 @@
     <Button
         android:layout_margin="30dp"
         android:textSize="20dp"
-        android:onClick="faceCheckCamera"
+        android:onClick="singefacecameraview"
         android:text="带画框人脸检测"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
