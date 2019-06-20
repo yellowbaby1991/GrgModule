@@ -17,13 +17,13 @@ import com.grg.face.core.FaceDetecter;
 
 import static com.aibee.auth.AibeeAuth.AuthState.AuthStateSuc;
 
-public class SingleFaceCameraView  extends RelativeLayout implements CameraView{
+public class BaseCameraView extends RelativeLayout implements CameraView{
 
     //是否画框
     protected boolean mIsShowFrame = true;
 
     //人脸检测类
-    private FaceDetecter mFaceDetecter;
+    protected FaceDetecter mFaceDetecter;
 
     //相机预览控件
     private CameraTextureView mCameraVtv;
@@ -40,11 +40,11 @@ public class SingleFaceCameraView  extends RelativeLayout implements CameraView{
     //丢弃前两帧废数据
     private int ingoreNum = 0;
 
-    public SingleFaceCameraView(Context context) {
+    public BaseCameraView(Context context) {
         this(context,null);
     }
 
-    public SingleFaceCameraView(Context context, AttributeSet attrs) {
+    public BaseCameraView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         LayoutInflater.from(context).inflate(R.layout.layout_singeface_cameraview, this, true);

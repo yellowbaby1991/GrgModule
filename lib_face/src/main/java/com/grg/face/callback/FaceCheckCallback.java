@@ -17,4 +17,9 @@ public interface FaceCheckCallback {
      * @param pribitmap 原图
      */
     void getFace(Bitmap bitmap, Bitmap pribitmap);
+
+    /**
+     * 丢失人脸，用于清除人脸框
+     */
+    void loseFace();
 }

@@ -39,6 +39,11 @@ public class SingleFaceCameraViewActivity extends AppCompatActivity {
                 }
             });
         }
+
+        @Override
+        public void loseFace() {
+
+        }
     };
 
     @Override
