@@ -195,4 +195,12 @@ public abstract class BaseCameraView extends RelativeLayout {
     public void setFaceCheckCallback(FaceCheckCallback faceCheckCallback) {
         mFaceCheckCallback = faceCheckCallback;
     }
+
+    public boolean isOpenCheckFace() {
+        return mIsOpenCheckFace;
+    }
+
+    public void setOpenCheckFace(boolean openCheckFace) {
+        mIsOpenCheckFace = openCheckFace;
+    }
 }
