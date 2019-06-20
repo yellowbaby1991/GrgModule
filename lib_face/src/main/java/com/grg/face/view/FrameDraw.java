@@ -56,8 +56,7 @@ public class FrameDraw extends SurfaceView implements SurfaceHolder.Callback {
                 canvas.drawPaint(paint);
             }
             sh.unlockCanvasAndPost(canvas);
-        }catch (Exception e){
-            e.printStackTrace();//解决偶尔界面消耗还调用的BUG
+        }catch (Exception e){//解决偶尔界面消耗还调用的BUG
         }
 
     }
