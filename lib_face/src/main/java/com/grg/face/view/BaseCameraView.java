@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.RectF;
 import android.hardware.Camera;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.RelativeLayout;
@@ -40,8 +41,11 @@ public abstract class BaseCameraView extends RelativeLayout {
     //回调接口
     protected FaceCheckCallback mFaceCheckCallback;
 
-    //丢弃前两帧废数据
-    protected int ingoreNum = 0;
+    //gif路径，如果没有则默认画框
+    protected String mGifPath;
+
+    /*//丢弃前两帧废数据
+    protected int ingoreNum = 0;*/
 
     public BaseCameraView(Context context) {
         this(context, null);
@@ -150,7 +154,12 @@ public abstract class BaseCameraView extends RelativeLayout {
                     float rate = (float) width / (float) cameraWidth;
                     RectF temp = new RectF(width - rectF.right * rate, rectF.top * rate, width - rectF.left * rate, rectF.bottom * rate);
                     //RectF temp = new RectF(rectF.right * rate, rectF.top * rate, rectF.left * rate, rectF.bottom * rate);
-                    mFrameDraw.drawBoundingBox(temp, 1, Color.WHITE);
+                    //mFrameDraw.drawBoundingBox(temp, 1, Color.WHITE);
+                    if (TextUtils.isEmpty(mGifPath)){
+                        mFrameDraw.drawBoundingBox(temp, 1, Color.WHITE);
+                    }else {
+                        mFrameDraw.drawGif(temp,mGifPath);
+                    }
 
                 }
                 if (mFaceCheckCallback != null && mIsOpenCheckFace) {
@@ -206,5 +215,13 @@ public abstract class BaseCameraView extends RelativeLayout {
     public void setOpenCheckFace(boolean openCheckFace) {
         mFrameDraw.clearDraw();
         mIsOpenCheckFace = openCheckFace;
+    }
+
+    public String getGifPath() {
+        return mGifPath;
+    }
+
+    public void setGifPath(String gifPath) {
+        mGifPath = gifPath;
     }
 }

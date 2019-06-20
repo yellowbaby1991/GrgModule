@@ -9,8 +9,8 @@
 
     <com.grg.face.view.SingleFaceCameraView
         android:id="@+id/camera_view"
-        android:layout_width="640dp"
-        android:layout_height="480dp">
+        android:layout_width="800dp"
+        android:layout_height="640dp">
     </com.grg.face.view.SingleFaceCameraView>
 
     <ImageView

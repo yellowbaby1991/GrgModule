@@ -43,7 +43,7 @@ public class FaceActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                twofaceCheckCamera(null);
+                singefacecameraview(null);
             }
         },1000);
 

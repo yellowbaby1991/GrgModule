@@ -52,6 +52,7 @@ public class SingleFaceCameraViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_singleface_cameraview);
 
         mFaceCheckCameraView = findViewById(R.id.camera_view);
+        mFaceCheckCameraView.setGifPath("frame.gif");
         mFaceIv = findViewById(R.id.face_iv);
         mImageView = findViewById(R.id.img_iv);
 
