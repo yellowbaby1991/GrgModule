@@ -41,7 +41,7 @@ public class FrameDraw extends SurfaceView implements SurfaceHolder.Callback {
 
     public void surfaceDestroyed(SurfaceHolder arg0) {
         // TODO Auto-generated method stub  
-
+        clearDraw();
     }
 
     public void clearDraw() {
