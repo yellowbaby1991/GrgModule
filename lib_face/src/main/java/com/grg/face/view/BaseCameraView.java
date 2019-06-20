@@ -201,6 +201,7 @@ public abstract class BaseCameraView extends RelativeLayout {
     }
 
     public void setOpenCheckFace(boolean openCheckFace) {
+        mFrameDraw.clearDraw();
         mIsOpenCheckFace = openCheckFace;
     }
 }
