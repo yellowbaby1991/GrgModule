@@ -55,7 +55,6 @@ public class SingleFaceCameraViewActivity extends AppCompatActivity {
         mFaceIv = findViewById(R.id.face_iv);
         mImageView = findViewById(R.id.img_iv);
 
-        mFaceCheckCameraView.setCheckLiving(true);
         mFaceCheckCameraView.startPreview(0, 640, 480);
         mFaceCheckCameraView.setFaceCheckCallback(mFaceCheckCallback);
     }
