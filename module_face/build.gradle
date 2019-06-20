@@ -14,7 +14,8 @@ android {
 
     defaultConfig {
         if (isFaceModuleTest.toBoolean()) {
-            applicationId "com.grg.face"
+            //applicationId "com.grg.face"
+            applicationId "com.icbc.gd.snapface";
         }
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion

@@ -48,13 +48,18 @@ public class FrameDraw extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void clearDraw() {
-        Canvas canvas = sh.lockCanvas();
-        if (canvas != null) {
-            Paint paint = new Paint();
-            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-            canvas.drawPaint(paint);
+        try {
+            Canvas canvas = sh.lockCanvas();
+            if (canvas != null) {
+                Paint paint = new Paint();
+                paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+                canvas.drawPaint(paint);
+            }
+            sh.unlockCanvasAndPost(canvas);
+        }catch (Exception e){
+            e.printStackTrace();//解决偶尔界面消耗还调用的BUG
         }
-        sh.unlockCanvasAndPost(canvas);
+
     }
 
     public void drawBoundingBox(RectF rectF, int lineWidth, int color) {

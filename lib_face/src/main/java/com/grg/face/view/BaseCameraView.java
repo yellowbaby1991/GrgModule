@@ -180,10 +180,7 @@ public abstract class BaseCameraView extends RelativeLayout {
 
             @Override
             public void loseFace() {
-                if (mFrameDraw != null && mFaceCheckCallback != null){
-                    mFrameDraw.clearDraw();
-                }
-
+                mFrameDraw.clearDraw();
             }
         }, getContext());
     }
