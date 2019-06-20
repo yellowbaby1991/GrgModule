@@ -9,18 +9,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
 import com.grg.face.callback.FaceCheckCallback;
-import com.grg.face.core.FaceAuth;
 import com.grg.face.view.SingleFaceCameraView;
+import com.grg.face.view.TwoFaceCameraView;
 
 
 /**
  * 带人脸追踪框的单目SingleFaceCameraView
  */
-public class SingleFaceCameraViewActivity extends AppCompatActivity {
+public class TwoFaceCameraViewActivity extends AppCompatActivity {
 
     private ImageView mFaceIv, mImageView;
 
-    private SingleFaceCameraView mFaceCheckCameraView;
+    private TwoFaceCameraView mFaceCheckCameraView;
 
     private FaceCheckCallback mFaceCheckCallback = new FaceCheckCallback() {
 
@@ -49,14 +49,13 @@ public class SingleFaceCameraViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_singleface_cameraview);
+        setContentView(R.layout.activity_twoface_cameraview);
 
         mFaceCheckCameraView = findViewById(R.id.camera_view);
         mFaceIv = findViewById(R.id.face_iv);
         mImageView = findViewById(R.id.img_iv);
 
-        mFaceCheckCameraView.setCheckLiving(true);
-        mFaceCheckCameraView.startPreview(0, 640, 480);
+        mFaceCheckCameraView.startTwoPreview(0, 1);
         mFaceCheckCameraView.setFaceCheckCallback(mFaceCheckCallback);
     }
 

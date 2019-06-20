@@ -104,7 +104,7 @@ public class FaceDetecter {
         }
     }
 
-    public void init(boolean islive) {
+    public void init(boolean isTwoCameara) {
         if (mTracker == null) {
             try {
                 mTracker = new FaceTracker(mContext.getAssets());
@@ -112,12 +112,12 @@ public class FaceDetecter {
                 e.printStackTrace();
             }
             if (mTracker != null) {
-                if (islive) {
+                if (isTwoCameara) {
                     mTracker.setIsVerifyLive(1);  // set: Whether to do liveness checking
                 } else {
                     mTracker.setIsVerifyLive(0);  // set: Whether to do liveness checking
                 }
-                mTracker.setIsCheckQuality(islive);     // set check the face image quality
+                mTracker.setIsCheckQuality(isTwoCameara);     // set check the face image quality
                 mTracker.setFaceScoreThr(0.2f);      // set: the face confidence threshold.
                 mTracker.setMinFaceSize(100);    // set the smallest face size to be detected (in pixels)
                 mTracker.setIsCheckQuality(true);     // set check the face image quality
@@ -249,6 +249,9 @@ public class FaceDetecter {
                         }
                         if (top + h > pribitmap.getHeight()) {
                             h = pribitmap.getHeight() - top;
+                        }
+                        if (h <= 0 || w <= 0){
+                            compareCallback.loseFace();
                         }
                         Bitmap bitmap = Bitmap.createBitmap(pribitmap, left, top, w, h);
                         bitmap = mirrorConvert(bitmap, 0);

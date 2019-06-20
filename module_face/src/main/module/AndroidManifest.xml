@@ -24,6 +24,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SingleFaceCameraViewActivity"/>
+        <activity android:name=".TwoFaceCameraViewActivity"/>
     </application>
 
 </manifest>

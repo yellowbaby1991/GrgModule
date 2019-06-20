@@ -6,39 +6,22 @@ import android.graphics.Color;
 import android.graphics.RectF;
 import android.hardware.Camera;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
-import com.aibee.auth.AibeeAuth;
 import com.grg.face.R;
-import com.grg.face.callback.FaceCheckCallback;
 import com.grg.face.core.FaceDetecter;
+import com.grg.face.core.SingleFaceLivingDetecter;
 
-import static com.aibee.auth.AibeeAuth.AuthState.AuthStateSuc;
 
-public class SingleFaceCameraView  extends RelativeLayout implements CameraView{
+/**
+ * 单目人脸检测画框控件
+ */
+public class SingleFaceCameraView extends BaseCameraView{
 
-    //是否画框
-    protected boolean mIsShowFrame = true;
-
-    //人脸检测类
-    private FaceDetecter mFaceDetecter;
+    //是否支持单目活体
+    private boolean mIsCheckLiving = false;
 
     //相机预览控件
-    private CameraTextureView mCameraVtv;
-
-    //人脸追踪框绘制控件
-    private FrameDraw mFrameDraw;
-
-    //是否打开人脸检测
-    private boolean mIsOpenCheckFace = true;
-
-    //回调接口
-    private FaceCheckCallback mFaceCheckCallback;
-
-    //丢弃前两帧废数据
-    private int ingoreNum = 0;
+    protected CameraTextureView mCameraVtv;
 
     public SingleFaceCameraView(Context context) {
         this(context,null);
@@ -46,93 +29,26 @@ public class SingleFaceCameraView  extends RelativeLayout implements CameraView{
 
     public SingleFaceCameraView(Context context, AttributeSet attrs) {
         super(context, attrs);
-
-        LayoutInflater.from(context).inflate(R.layout.layout_singeface_cameraview, this, true);
-
-        initView();
-
     }
 
+    @Override
+    protected int getLayout() {
+        return R.layout.layout_singeface_cameraview;
+    }
+
+    @Override
     public void initView() {
         mCameraVtv = findViewById(R.id.camera_vtv);
         mFrameDraw = findViewById(R.id.camera_frame_draw);
     }
 
-    /**
-     * 打开分辨率640×480的摄像头
-     * @param cameraID 摄像头编号
-     */
-    public void startPreview(int cameraID) {
-        startPreview(cameraID, 640, 480);
-    }
-
-    /**
-     * 打开指定分辨率的摄像头
-     * @param cameraID 摄像头编号
-     * @param width 宽
-     * @param height 高
-     */
-    public void startPreview(int cameraID, int width, int height) {
-        if (!isAuthSuc()) {
-            Toast.makeText(getContext(), "算法授权未成功", Toast.LENGTH_SHORT).show();
-            return;
-        }
+    @Override
+    protected void openCamera(int cameraID, int width, int height) {
         mCameraVtv.startPreview(cameraID, width, height);
-        initFaceDetecter();
-        setDecterToCamera();
     }
 
-    private boolean isAuthSuc() {
-        AibeeAuth.AuthState state = AibeeAuth.getsInstance().getState();
-        if (state == AuthStateSuc) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private void initFaceDetecter() {
-        mFaceDetecter = createFaceDetater();
-        mFaceDetecter.setTwoCamera(false);
-        mFaceDetecter.init(new FaceDetecter.FaceDetecterCallback() {
-            @Override
-            public void getFaceLocation(RectF rectF) {
-                if (ingoreNum < 2){
-                    return;
-                }
-                if (mIsShowFrame && mIsOpenCheckFace) {
-                    int cameraWidth = mCameraVtv.getCameraWidth();//相机分辨率宽
-                    int width = getWidth();//控件实际物理宽
-                    float rate = (float) width / (float) cameraWidth;
-                    RectF temp = new RectF(width - rectF.right * rate, rectF.top * rate, width - rectF.left * rate, rectF.bottom * rate);
-                    //RectF temp = new RectF(rectF.right * rate, rectF.top * rate, rectF.left * rate, rectF.bottom * rate);
-                    mFrameDraw.drawBoundingBox(temp, 1, Color.WHITE);
-
-                }
-                if (mFaceCheckCallback != null && mIsOpenCheckFace) {
-                    mFaceCheckCallback.getFaceLocation(rectF);
-                }
-            }
-
-            @Override
-            public void getFace(Bitmap bitmap, Bitmap pribitmap) {
-                if (ingoreNum < 2){
-                    ingoreNum++;
-                    return;
-                }
-                if (mFaceCheckCallback != null && mIsOpenCheckFace) {
-                    mFaceCheckCallback.getFace(bitmap, pribitmap);
-                }
-            }
-
-            @Override
-            public void loseFace() {
-                mFrameDraw.clearDraw();
-            }
-        }, getContext());
-    }
-
-    private void setDecterToCamera() {
+    @Override
+    protected void setDecterToCamera() {
         mCameraVtv.setOnPreviewCallback(new CameraTextureView.OnPreviewCallback() {
             @Override
             public void onPreviewFrame(byte[] data, Camera camera) {
@@ -144,23 +60,20 @@ public class SingleFaceCameraView  extends RelativeLayout implements CameraView{
         });
     }
 
+    @Override
     protected FaceDetecter createFaceDetater() {
-        return new FaceDetecter();
+        if (mIsCheckLiving){
+            return new SingleFaceLivingDetecter();
+        }else {
+            return new FaceDetecter();
+        }
     }
 
-    public boolean isShowFrame() {
-        return mIsShowFrame;
+    public boolean isCheckLiving() {
+        return mIsCheckLiving;
     }
 
-    public void setShowFrame(boolean showFrame) {
-        mIsShowFrame = showFrame;
-    }
-
-    public FaceCheckCallback getFaceCheckCallback() {
-        return mFaceCheckCallback;
-    }
-
-    public void setFaceCheckCallback(FaceCheckCallback faceCheckCallback) {
-        mFaceCheckCallback = faceCheckCallback;
+    public void setCheckLiving(boolean checkLiving) {
+        mIsCheckLiving = checkLiving;
     }
 }
