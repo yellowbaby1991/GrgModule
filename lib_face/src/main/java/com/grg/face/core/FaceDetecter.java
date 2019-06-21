@@ -253,10 +253,16 @@ public class FaceDetecter {
                         if (h <= 0 || w <= 0){
                             compareCallback.loseFace();
                         }
-                        Bitmap bitmap = Bitmap.createBitmap(pribitmap, left, top, w, h);
-                        bitmap = mirrorConvert(bitmap, 0);
-                        pribitmap = mirrorConvert(pribitmap, 0);
-                        compareCallback.getFace(bitmap, pribitmap);
+                        try {
+                            Bitmap bitmap = Bitmap.createBitmap(pribitmap, left, top, w, h);
+                            bitmap = mirrorConvert(bitmap, 0);
+                            pribitmap = mirrorConvert(pribitmap, 0);
+                            compareCallback.getFace(bitmap, pribitmap);
+                        }
+                        catch (Exception e){
+                            compareCallback.loseFace();
+                        }
+
                     }
                 }
             }
