@@ -56,20 +56,25 @@ public class FrameDraw extends SurfaceView implements SurfaceHolder.Callback {
                 canvas.drawPaint(paint);
             }
             sh.unlockCanvasAndPost(canvas);
-        }catch (Exception e){//解决偶尔界面消耗还调用的BUG
+        }catch (Exception e){
         }
 
     }
 
     public void drawBoundingBox(RectF rectF, int lineWidth, int color) {
-        Canvas canvas = sh.lockCanvas();
-        canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
-        Paint paint = new Paint();
-        paint.setStrokeWidth(lineWidth);
-        paint.setColor(color);
-        paint.setStyle(Paint.Style.STROKE);//设置空心
-        canvas.drawRect(rectF, paint);
-        sh.unlockCanvasAndPost(canvas);
+        try {
+            Canvas canvas = sh.lockCanvas();
+            canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
+            Paint paint = new Paint();
+            paint.setStrokeWidth(lineWidth);
+            paint.setColor(color);
+            paint.setStyle(Paint.Style.STROKE);//设置空心
+            canvas.drawRect(rectF, paint);
+            sh.unlockCanvasAndPost(canvas);
+        }catch (Exception e){
+
+        }
+
     }
 
     //用来播放GIF
@@ -84,21 +89,24 @@ public class FrameDraw extends SurfaceView implements SurfaceHolder.Callback {
         if (movie == null) {
             initGif(path);
         }
+        try {
+            Canvas canvas = sh.lockCanvas();
+            canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
+            canvas.save();
+            //计算缩放比例
+            zoom = (rectF.right - rectF.left) / gifWidth;
+            canvas.scale(zoom, zoom);
+            //设置画布
+            movie.draw(canvas, rectF.left / zoom, rectF.top / zoom);
+            //逐帧绘制图片
+            //这里使用时间戳 与总帧数 求余操作，这样 随着时间的推移计算出该播放哪一帧
+            movie.setTime((int) (System.currentTimeMillis() % movie.duration()));
+            // 恢复之前保存的状态
+            canvas.restore();
+            sh.unlockCanvasAndPost(canvas);
+        }catch (Exception e){
 
-        Canvas canvas = sh.lockCanvas();
-        canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
-        canvas.save();
-        //计算缩放比例
-        zoom = (rectF.right - rectF.left) / gifWidth;
-        canvas.scale(zoom, zoom);
-        //设置画布
-        movie.draw(canvas, rectF.left / zoom, rectF.top / zoom);
-        //逐帧绘制图片
-        //这里使用时间戳 与总帧数 求余操作，这样 随着时间的推移计算出该播放哪一帧
-        movie.setTime((int) (System.currentTimeMillis() % movie.duration()));
-        // 恢复之前保存的状态
-        canvas.restore();
-        sh.unlockCanvasAndPost(canvas);
+        }
     }
 
     //加载gif
