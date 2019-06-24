@@ -148,6 +148,9 @@ public abstract class BaseCameraView extends RelativeLayout {
                /* if (ingoreNum < 2){
                     return;
                 }*/
+                if (mFrameDraw == null) {
+                    return;
+                }
                 if (mIsShowFrame && mIsOpenCheckFace) {
                     int cameraWidth = mWidth;//相机分辨率宽
                     int width = getWidth();//控件实际物理宽
@@ -155,10 +158,10 @@ public abstract class BaseCameraView extends RelativeLayout {
                     RectF temp = new RectF(width - rectF.right * rate, rectF.top * rate, width - rectF.left * rate, rectF.bottom * rate);
                     //RectF temp = new RectF(rectF.right * rate, rectF.top * rate, rectF.left * rate, rectF.bottom * rate);
                     //mFrameDraw.drawBoundingBox(temp, 1, Color.WHITE);
-                    if (TextUtils.isEmpty(mGifPath)){
+                    if (TextUtils.isEmpty(mGifPath)) {
                         mFrameDraw.drawBoundingBox(temp, 1, Color.WHITE);
-                    }else {
-                        mFrameDraw.drawGif(temp,mGifPath);
+                    } else {
+                        mFrameDraw.drawGif(temp, mGifPath);
                     }
 
                 }
@@ -173,6 +176,9 @@ public abstract class BaseCameraView extends RelativeLayout {
                     ingoreNum++;
                     return;
                 }*/
+                if (mFrameDraw == null) {
+                    return;
+                }
                 if (mFaceCheckCallback != null && mIsOpenCheckFace) {
                     mFaceCheckCallback.getFace(bitmap, pribitmap);
                 }
@@ -180,6 +186,9 @@ public abstract class BaseCameraView extends RelativeLayout {
 
             @Override
             public void loseFace() {
+                if (mFrameDraw == null) {
+                    return;
+                }
                 mFrameDraw.clearDraw();
             }
         }, getContext());
