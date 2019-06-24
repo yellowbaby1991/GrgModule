@@ -9,7 +9,7 @@ import com.aibee.face.facesdk.FaceTracker;
  */
 public class SingleFaceLivingDetecter extends FaceDetecter {
 
-    public void init(boolean islive) {
+    public void init(boolean isTwoCameara) {
         if (mTracker == null) {
             try {
                 mTracker = new FaceTracker(mContext.getAssets());

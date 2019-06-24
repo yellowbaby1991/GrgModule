@@ -23,18 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".single.SingleCameraActivity">
-        </activity>
-        <activity android:name=".living.SingleLivingCameraActivity">
-        </activity>
-        <activity android:name=".cameraview.FaceCheckCameraActivity">
-        </activity>
-        <activity android:name=".living.LivingCameraActivity">
-        </activity>
-        <activity android:name=".custom.CustomActivity">
-        </activity>
-        <activity android:name=".cameraview.TwoFaceCheckCameraActivity">
-        </activity>
+        <activity android:name=".SingleFaceCameraViewActivity"/>
+        <activity android:name=".TwoFaceCameraViewActivity"/>
     </application>
 
 </manifest>
