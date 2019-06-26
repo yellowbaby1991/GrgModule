@@ -71,10 +71,8 @@ dependencies {
         exclude module: "support-v4"
     }
 
-    debugApi(rootProject.ext.dependencies.debugleak)
-    releaseApi(rootProject.ext.dependencies.releaseleak)
-    debugApi(rootProject.ext.dependencies.debugblock)
-    releaseApi(rootProject.ext.dependencies.releaseblock)
+    api(rootProject.ext.dependencies.leak)
+    api(rootProject.ext.dependencies.block)
 
     annotationProcessor rootProject.ext.dependencies.arouter_compiler
 }

@@ -28,16 +28,18 @@ public class HomeActivity extends AppCompatActivity {
         mBinding.setViewModel(new HomeViewModel(this));
 
 
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
 
         ARouter.getInstance().inject(this);
 
 
         testGrgOrderView();
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private void testGrgOrderView() {

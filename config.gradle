@@ -18,10 +18,8 @@ ext {
             arouter_compiler = "1.1.4",
             glide = "3.8.0",
             reflection = "1.2.0",
-            debugleak = "1.3",
-            releaseleak = "1.3",
-            debugblock = "1.5.0",
-            releaseblock = "1.5.0",
+            leak = "1.3",
+            block = "1.5.0",
             volley = "1.0.0",
             fastjson = "1.1.56.android",
             circleImageView = "2.1.0",
@@ -50,11 +48,9 @@ ext {
             //突破反射限制
             reflection      : "me.weishu:free_reflection:$rootProject.reflection",
             //检测泄漏检测
-            debugleak       : "com.squareup.leakcanary:leakcanary-android:$rootProject.debugleak",
-            releaseleak     : "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.releaseleak",
+            leak       : "com.squareup.leakcanary:leakcanary-android:$rootProject.leak",
             //检测UI卡顿
-            debugblock      : "com.github.markzhai:blockcanary-android:$rootProject.debugblock",
-            releaseblock    : "com.github.markzhai:blockcanary-no-op:$rootProject.releaseblock",
+            block      : "com.github.markzhai:blockcanary-android:$rootProject.block",
             //网络请求框架
             volley          : "com.android.volley:volley:$rootProject.volley",
             //谷歌官方库cardvIEW
