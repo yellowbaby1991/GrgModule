@@ -140,6 +140,10 @@ public abstract class BaseCameraView extends RelativeLayout {
         }
     }
 
+    public FaceDetecter getFaceDetecter() {
+        return mFaceDetecter;
+    }
+
     protected void initFaceDetecter() {
         mFaceDetecter = createFaceDetater();
         mFaceDetecter.init(new FaceDetecter.FaceDetecterCallback() {

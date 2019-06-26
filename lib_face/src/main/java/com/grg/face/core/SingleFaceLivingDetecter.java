@@ -38,14 +38,6 @@ public class SingleFaceLivingDetecter extends FaceDetecter {
                 mTracker.setThreadNum(1);      // Set the number of threads to use
             }
         }
-        if (faceIdentifier == null) {
-            try {
-                faceIdentifier = new FaceIdentifier(mContext.getAssets());
-                faceIdentifier.cacheFaceidModel();
-                faceIdentifier.setThreadNum(1);
-            } catch (AuthorityException e) {
-            }
-        }
     }
     
 }
