@@ -47,7 +47,7 @@ public class BitmapUtils {
         return bitmap;
     }
 
-    public static void saveBitmap(String filename, Bitmap bitmap) {
+    public static String saveBitmap(String filename, Bitmap bitmap) {
         // 首先保存图片
         File appDir = new File(Environment.getExternalStorageDirectory(), "grg_image");
         if (!appDir.exists()) {
@@ -62,6 +62,18 @@ public class BitmapUtils {
             fos.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        return file.getAbsolutePath();
+    }
+
+    public static Bitmap getBitmapFromFile(String pathName) {
+        return BitmapFactory.decodeFile(pathName);
+    }
+
+    public static void deleteFile(String path) {
+        File file = new File(path);
+        if (file.exists()) {
+            file.delete();
         }
     }
 
