@@ -3,11 +3,12 @@ ext {
 
     android = [
             compileSdkVersion: 27,
-            minSdkVersion    : 17,
+            minSdkVersion    : 22,
             targetSdkVersion : 27,
             versionCode      : 1,
             versionName      : "1.0",
     ]
+
 
     libsVersion = [
             // App dependencies version
@@ -23,9 +24,15 @@ ext {
             releaseblock = "1.5.0",
             volley = "1.0.0",
             fastjson = "1.1.56.android",
-            circleImageView = "1.3.0",
+            circleImageView = "2.1.0",
             xcrash = "2.1.3",
-            xui = "1.0.4"
+            xui = "1.0.4",
+            grg_libcommon = "1.0.8",
+            grg_libface = "1.2.5",
+            grg_leds005 = "1.0.0",
+            countdownview = "2.1.6",
+            recycler_adapter_helper = "2.9.42"
+
     ]
 
     dependencies = [
@@ -50,13 +57,25 @@ ext {
             releaseblock    : "com.github.markzhai:blockcanary-no-op:$rootProject.releaseblock",
             //网络请求框架
             volley          : "com.android.volley:volley:$rootProject.volley",
+            //谷歌官方库cardvIEW
             cardView        : "com.android.support:cardview-v7:$rootProject.supportLibraryVersion",
+            //阿里json库
             fastjson        : "com.alibaba:fastjson:$rootProject.fastjson",
+            //圆形头像库
             circleImageView : "de.hdodenhof:circleimageview:$rootProject.circleImageView",
             //爱奇艺的奔溃日志捕捉库，可以捕获native错误
             xcrash          : "com.iqiyi.xcrash:xcrash-android-lib:$rootProject.xcrash",
             //超强的UI库
             xui             : "com.github.xuexiangjys:XUI:$rootProject.xui",
+            //倒计时库
+            countdownview   :"com.github.iwgang:countdownview:$rootProject.countdownview",
+            //GRG共用库
+            grg_libcommon     : "com.grg:lib_common:$rootProject.grg_libcommon",
+            //GRG人脸库
+            grg_libface     : "com.grg:lib_grgface_release:$rootProject.grg_libface",
+            //GRG补光灯库
+            grg_leds005     : "com.grg:lib_led_s005:$rootProject.grg_leds005",
+            recycler_adapter_helper : "com.github.CymChad:BaseRecyclerViewAdapterHelper:$rootProject.recycler_adapter_helper"
     ]
 
 }
