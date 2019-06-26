@@ -28,7 +28,11 @@ public class HomeActivity extends AppCompatActivity {
         mBinding.setViewModel(new HomeViewModel(this));
 
 
-
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         ARouter.getInstance().inject(this);
 
@@ -46,6 +50,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void idcard(View view){
+
         ARouter.getInstance().
                 build("/idcard/activity")
                 .withString("name","黄贝")

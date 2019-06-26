@@ -15,9 +15,11 @@ public class AppBlockCanaryContext extends BlockCanaryContext {
 
     //是否需要显示卡顿的信息
     public boolean displayNotification() {
-        return BuildConfig.DEBUG;
+        return true;
     }
 
-
+    public String providePath() {
+        return "/blockcanary/";
+    }
 
 }

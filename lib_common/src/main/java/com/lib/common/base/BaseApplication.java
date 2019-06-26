@@ -43,32 +43,34 @@ public class BaseApplication extends Application {
 
         instance = this;
 
-        //用于捕获UI阻塞
-        BlockCanary.install(this, new AppBlockCanaryContext()).start();
-
-        //用于检测内存异常
-        LeakCanary.install(this);
-
-        //用于捕获崩溃日志，和CrashRoach会冲突
+        installBlockCanary();
+        installLeakCanary();
         initXCrash();
-
-        //用于捕获崩溃防止闪退
-        //installCrashRoach();
-
-        //初始化网络请求工具
         initHttpHelper();
-
-        //初始化路由
         initRouter();
-
-        //初始化日志工具类
         initGrgLog();
-
-        XUI.init(this); //初始化UI框架
-        XUI.debug(true);  //开启UI框架调试日志
+        initXui();
 
     }
 
+    //用于检测内存异常
+    protected void installLeakCanary() {
+        LeakCanary.install(this);
+    }
+
+    //初始化XUI
+    protected void initXui() {
+        XUI.init(this); //初始化UI框架
+        XUI.debug(true);  //开启UI框架调试日志
+    }
+
+    //用于捕获UI阻塞
+    protected void installBlockCanary(){
+        BlockCanary.install(this, new AppBlockCanaryContext()).start();
+    }
+
+
+    //初始化网络请求工具
     protected void initHttpHelper(){
         HttpHelper.init(new VolleyProcessor(this));
     }
@@ -122,7 +124,7 @@ public class BaseApplication extends Application {
     }
 
     //安装路由
-    private void initRouter() {
+    protected void initRouter() {
         if (isDebugARouter) {
             //一定要在ARouter.init之前调用openDebug
             ARouter.openDebug();
@@ -151,10 +153,12 @@ public class BaseApplication extends Application {
         return getPackageName();
     }
 
+    //初始化GRG日志
     protected void initGrgLog() {
         GrgLog.init(BASE_PATH + getLogPath() + "/log/" + new SimpleDateFormat(GrgLog.DATE_FORMAT).format(new Date()));
     }
 
+    //用于捕获崩溃日志，和CrashRoach会冲突
     protected void initXCrash(){
         XCrash.init(this, new XCrash.InitParameters().setLogDir(BASE_PATH + getLogPath() + "/crash/" + new SimpleDateFormat(GrgLog.DATE_FORMAT).format(new Date())));
     }
