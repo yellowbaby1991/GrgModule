@@ -10,6 +10,7 @@ import android.view.View;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.grg.face.core.FaceAuth;
+import com.grg.face.view.CameraTextureView;
 import com.lib.common.utils.ToastUtils;
 
 import java.io.DataOutputStream;
@@ -17,11 +18,22 @@ import java.io.DataOutputStream;
 @Route(path = "/face/activity")
 public class FaceActivity extends AppCompatActivity {
 
+    private CameraTextureView mCameraTextureView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_face);
+
+        mCameraTextureView = findViewById(R.id.cv);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mCameraTextureView.startPreview(0);
+            }
+        },2000);
 
         ToastUtils.show(FaceAuth.getDeviceId(this));
 
@@ -41,25 +53,25 @@ public class FaceActivity extends AppCompatActivity {
             }
         });
 
-        new Handler().postDelayed(new Runnable() {
+      /*  new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 singefacecameraview(null);
             }
-        },1000);
+        }, 1000);*/
 
         ARouter.getInstance().inject(this);
 
     }
 
 
-    public void singleLivingCamera(View view){
+    public void singleLivingCamera(View view) {
        /* Intent intent = new Intent(this, SingleLivingCameraActivity.class);
         startActivity(intent);*/
         finish();
     }
 
-    public void custom(View view){
+    public void custom(View view) {
        /* Intent intent = new Intent(this, CustomActivity.class);
         startActivity(intent);*/
         finish();
@@ -83,12 +95,11 @@ public class FaceActivity extends AppCompatActivity {
         finish();
     }
 
-    public void twofaceCheckCamera(View view){
+    public void twofaceCheckCamera(View view) {
         Intent intent = new Intent(this, TwoFaceCameraViewActivity.class);
         startActivity(intent);
         finish();
     }
-
 
 
 }

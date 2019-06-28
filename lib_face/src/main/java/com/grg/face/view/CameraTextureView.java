@@ -32,10 +32,11 @@ public class CameraTextureView extends TextureView {
      * @param cameraID 相机序号
      */
     public void startPreview(int cameraID) {
-        mCameraID = cameraID;
-        init();
         mWidth = 640;
         mHeight = 480;
+        mCameraID = cameraID;
+        init();
+
     }
 
     /**
