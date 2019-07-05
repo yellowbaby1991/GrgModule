@@ -44,8 +44,11 @@ public abstract class BaseCameraView extends RelativeLayout {
     //gif路径，如果没有则默认画框
     protected String mGifPath;
 
-    /*//丢弃前两帧废数据
-    protected int ingoreNum = 0;*/
+    //丢弃前两帧废数据
+    protected int ingoreNum = 0;
+
+    //是否丢弃前两帧废数据
+    protected boolean isOpenIgore = false;
 
     public BaseCameraView(Context context) {
         this(context, null);
@@ -149,9 +152,9 @@ public abstract class BaseCameraView extends RelativeLayout {
         mFaceDetecter.init(new FaceDetecter.FaceDetecterCallback() {
             @Override
             public void getFaceLocation(RectF rectF) {
-               /* if (ingoreNum < 2){
+                if (ingoreNum < 2 && isOpenIgore){
                     return;
-                }*/
+                }
                 if (mFrameDraw == null) {
                     return;
                 }
@@ -176,10 +179,10 @@ public abstract class BaseCameraView extends RelativeLayout {
 
             @Override
             public void getFace(Bitmap bitmap, Bitmap pribitmap) {
-               /* if (ingoreNum < 2){
+                if (ingoreNum < 2 && isOpenIgore){
                     ingoreNum++;
                     return;
-                }*/
+                }
                 if (mFrameDraw == null) {
                     return;
                 }
@@ -233,5 +236,13 @@ public abstract class BaseCameraView extends RelativeLayout {
 
     public void setGifPath(String gifPath) {
         mGifPath = gifPath;
+    }
+
+    public boolean isOpenIgore() {
+        return isOpenIgore;
+    }
+
+    public void setOpenIgore(boolean openIgore) {
+        isOpenIgore = openIgore;
     }
 }
