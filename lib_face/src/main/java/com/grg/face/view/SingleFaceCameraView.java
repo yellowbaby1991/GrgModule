@@ -77,4 +77,12 @@ public class SingleFaceCameraView extends BaseCameraView{
     public void setCheckLiving(boolean checkLiving) {
         mIsCheckLiving = checkLiving;
     }
+
+    public CameraTextureView getCameraVtv() {
+        return mCameraVtv;
+    }
+
+    public void stopCameraView(){
+        mCameraVtv.stopCamera();
+    }
 }
