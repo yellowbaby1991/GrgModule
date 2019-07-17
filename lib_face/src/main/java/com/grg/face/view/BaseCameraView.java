@@ -245,4 +245,6 @@ public abstract class BaseCameraView extends RelativeLayout {
     public void setOpenIgore(boolean openIgore) {
         isOpenIgore = openIgore;
     }
+
+    public abstract void stopCameraView();
 }
