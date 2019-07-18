@@ -57,6 +57,7 @@ public class FrameDraw extends SurfaceView implements SurfaceHolder.Callback {
             }
             sh.unlockCanvasAndPost(canvas);
         }catch (Exception e){
+            e.printStackTrace();
         }
 
     }
@@ -72,7 +73,7 @@ public class FrameDraw extends SurfaceView implements SurfaceHolder.Callback {
             canvas.drawRect(rectF, paint);
             sh.unlockCanvasAndPost(canvas);
         }catch (Exception e){
-
+            e.printStackTrace();
         }
 
     }
@@ -105,7 +106,7 @@ public class FrameDraw extends SurfaceView implements SurfaceHolder.Callback {
             canvas.restore();
             sh.unlockCanvasAndPost(canvas);
         }catch (Exception e){
-
+            e.printStackTrace();
         }
     }
 
