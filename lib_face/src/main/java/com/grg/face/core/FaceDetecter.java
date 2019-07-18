@@ -251,6 +251,7 @@ public class FaceDetecter {
                         }
                         catch (Exception e){
                             compareCallback.loseFace();
+                            e.printStackTrace();
                         }
 
                     }
