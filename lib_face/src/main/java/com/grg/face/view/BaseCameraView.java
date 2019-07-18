@@ -246,5 +246,7 @@ public abstract class BaseCameraView extends RelativeLayout {
         isOpenIgore = openIgore;
     }
 
-    public abstract void stopCameraView();
+    public void stopCameraView(){
+        mFrameDraw.clearDraw();
+    }
 }

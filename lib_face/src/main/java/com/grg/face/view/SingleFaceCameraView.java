@@ -83,6 +83,7 @@ public class SingleFaceCameraView extends BaseCameraView{
     }
 
     public void stopCameraView(){
+        super.stopCameraView();
         mCameraVtv.stopCamera();
         mFaceDetecter.release();
     }

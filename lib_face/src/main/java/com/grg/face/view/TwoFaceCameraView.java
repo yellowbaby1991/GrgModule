@@ -74,6 +74,7 @@ public class TwoFaceCameraView extends BaseCameraView{
 
     @Override
     public void stopCameraView() {
+        super.stopCameraView();
         mCameraVtv1.stopCamera();
         mCameraVtv2.stopCamera();
         mFaceDetecter.release();
