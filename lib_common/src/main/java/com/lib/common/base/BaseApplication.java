@@ -6,6 +6,7 @@ import android.os.Looper;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.android.volley.DefaultRetryPolicy;
 import com.github.moduth.blockcanary.BlockCanary;
 import com.lib.common.block.AppBlockCanaryContext;
 import com.lib.common.crash.Cockroach;
@@ -72,7 +73,9 @@ public class BaseApplication extends Application {
 
     //初始化网络请求工具
     protected void initHttpHelper(){
-        HttpHelper.init(new VolleyProcessor(this));
+        VolleyProcessor volleyProcessor = new VolleyProcessor(this);
+        volleyProcessor.setRetryPolicy(new DefaultRetryPolicy());
+        HttpHelper.init(volleyProcessor);
     }
 
     //出现异常后不闪退，捕捉异常继续运行APP

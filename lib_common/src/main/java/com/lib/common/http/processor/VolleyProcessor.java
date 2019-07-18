@@ -5,10 +5,12 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
@@ -29,8 +31,14 @@ public class VolleyProcessor implements IhttpProcessor {
 
     private static RequestQueue mQueue = null;
 
+    private RetryPolicy mRetryPolicy;
+
     public VolleyProcessor(Context context) {
         mQueue = Volley.newRequestQueue(context);
+    }
+
+    public void setRetryPolicy(RetryPolicy retryPolicy){
+        mRetryPolicy = retryPolicy;
     }
 
     @Override
@@ -48,6 +56,7 @@ public class VolleyProcessor implements IhttpProcessor {
                 callback.onFailed(volleyError.toString());
             }
         });
+        stringRequest.setRetryPolicy(mRetryPolicy);
         mQueue.add(stringRequest);
     }
 
@@ -66,6 +75,7 @@ public class VolleyProcessor implements IhttpProcessor {
                 callback.onFailed(volleyError.toString());
             }
         });
+        stringRequest.setRetryPolicy(mRetryPolicy);
         mQueue.add(stringRequest);
     }
 
@@ -89,6 +99,7 @@ public class VolleyProcessor implements IhttpProcessor {
                     }
                 });
 
+        jsonRequest.setRetryPolicy(mRetryPolicy);
         mQueue.add(jsonRequest);
 
     }
