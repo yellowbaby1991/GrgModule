@@ -38,13 +38,13 @@ public class SingleFaceCameraView extends BaseCameraView{
 
     @Override
     public void initView() {
-        setOpenIgore(!mIsCheckLiving);//单目非活体的时候过滤前两帧废数据
         mCameraVtv = findViewById(R.id.camera_vtv);
         mFrameDraw = findViewById(R.id.camera_frame_draw);
     }
 
     @Override
     protected void openCamera(int cameraID, int width, int height) {
+        setOpenIgore(!mIsCheckLiving);//单目非活体的时候过滤前两帧废数据
         super.openCamera(cameraID,width,height);
         mCameraVtv.startPreview(cameraID, width, height);
     }
