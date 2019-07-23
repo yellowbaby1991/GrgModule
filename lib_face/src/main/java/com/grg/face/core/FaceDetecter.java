@@ -26,7 +26,7 @@ public class FaceDetecter {
 
     private boolean working = true;
 
-    protected static FaceTracker mTracker;
+    protected FaceTracker mTracker;
 
     private int angle = 0;
 
