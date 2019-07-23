@@ -42,16 +42,23 @@ public abstract class BaseCameraView extends RelativeLayout {
     //gif路径，如果没有则默认画框
     protected String mGifPath;
 
-    //丢弃前两帧废数据
-    protected int mIngoreNum = 0;
+    //丢弃画框前两帧废数据
+    private int mIngoreNum = 0;
 
+    //画框时候丢弃的最大帧数
     protected int mMAXIngoreNum = 2;
 
-    //是否丢弃前两帧废数据
+    //是否丢弃画框废数据
     protected boolean mIsOpenIgore = false;
 
     //是否对称绘制人脸追踪框
     protected boolean mIsReverseFrame = false;
+
+    //是否丢弃获取人脸废数据
+    protected boolean mIsOpenIgoreGetFace = false;
+
+    //获取人脸时候丢弃的最大帧数
+    protected int mIngoreNumGetFace = 0;
 
     public int getMAXIngoreNum() {
         return mMAXIngoreNum;
@@ -204,6 +211,10 @@ public abstract class BaseCameraView extends RelativeLayout {
                 if (mIngoreNum < mMAXIngoreNum && mIsOpenIgore){
                     return;
                 }
+                if (mIngoreNumGetFace < 2 && mIsOpenIgoreGetFace){
+                    mIngoreNumGetFace++;
+                    return;
+                }
                 if (mFrameDraw == null) {
                     return;
                 }
@@ -269,5 +280,21 @@ public abstract class BaseCameraView extends RelativeLayout {
 
     public void stopCameraView(){
         mFrameDraw.clearDraw();
+    }
+
+    public boolean isOpenIgoreGetFace() {
+        return mIsOpenIgoreGetFace;
+    }
+
+    public void setOpenIgoreGetFace(boolean openIgoreGetFace) {
+        mIsOpenIgoreGetFace = openIgoreGetFace;
+    }
+
+    public int getIngoreNumGetFace() {
+        return mIngoreNumGetFace;
+    }
+
+    public void setIngoreNumGetFace(int ingoreNumGetFace) {
+        mIngoreNumGetFace = ingoreNumGetFace;
     }
 }
