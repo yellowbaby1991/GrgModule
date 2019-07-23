@@ -38,6 +38,7 @@ public class TwoFaceCameraView extends BaseCameraView{
 
     @Override
     protected void openTwoCamera(int cameraID1, int cameraID2, int width, int height) {
+        super.openTwoCamera(cameraID1,cameraID2,width,height);
         mCameraVtv1.startPreview(cameraID1, width, height);
         mCameraVtv2.startPreview(cameraID2, width, height);
     }

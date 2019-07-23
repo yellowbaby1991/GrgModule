@@ -45,6 +45,7 @@ public class SingleFaceCameraView extends BaseCameraView{
 
     @Override
     protected void openCamera(int cameraID, int width, int height) {
+        super.openCamera(cameraID,width,height);
         mCameraVtv.startPreview(cameraID, width, height);
     }
 

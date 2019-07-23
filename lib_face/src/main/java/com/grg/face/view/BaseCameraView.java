@@ -71,9 +71,6 @@ public abstract class BaseCameraView extends RelativeLayout {
 
         initView();
 
-        initFaceDetecter();
-        setDecterToCamera();
-
     }
 
     protected abstract int getLayout();
@@ -136,11 +133,13 @@ public abstract class BaseCameraView extends RelativeLayout {
 
 
     protected void openCamera(int cameraID, int width, int height) {
-
+        initFaceDetecter();
+        setDecterToCamera();
     }
 
     protected void openTwoCamera(int cameraID1, int cameraID2, int width, int height) {
-
+        initFaceDetecter();
+        setDecterToCamera();
     }
 
     protected boolean isAuthSuc() {
