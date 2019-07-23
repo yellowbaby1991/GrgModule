@@ -8,6 +8,7 @@
     android:layout_height="match_parent">
 
     <com.grg.face.view.CameraTextureView
+        android:alpha="0"
         android:id="@+id/camera_vtv2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
