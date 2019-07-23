@@ -38,7 +38,7 @@ public class TwoFaceCameraView extends BaseCameraView{
 
     @Override
     protected void openTwoCamera(int cameraID1, int cameraID2, int width, int height) {
-        setOpenIgore(false);//单目非活体的时候过滤前两帧废数据
+        setOpenIgore(true);//单目非活体的时候过滤前两帧废数据
         super.openTwoCamera(cameraID1,cameraID2,width,height);
         mCameraVtv1.startPreview(cameraID1, width, height);
         mCameraVtv2.startPreview(cameraID2, width, height);

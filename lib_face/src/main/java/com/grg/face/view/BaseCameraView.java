@@ -161,6 +161,7 @@ public abstract class BaseCameraView extends RelativeLayout {
             @Override
             public void getFaceLocation(RectF rectF) {
                 if (mIngoreNum < 2 && mIsOpenIgore){
+                    mIngoreNum++;
                     return;
                 }
                 if (mFrameDraw == null) {
@@ -191,7 +192,6 @@ public abstract class BaseCameraView extends RelativeLayout {
             @Override
             public void getFace(Bitmap bitmap, Bitmap pribitmap) {
                 if (mIngoreNum < 2 && mIsOpenIgore){
-                    mIngoreNum++;
                     return;
                 }
                 if (mFrameDraw == null) {
