@@ -45,11 +45,21 @@ public abstract class BaseCameraView extends RelativeLayout {
     //丢弃前两帧废数据
     protected int mIngoreNum = 0;
 
+    protected int mMAXIngoreNum = 2;
+
     //是否丢弃前两帧废数据
     protected boolean mIsOpenIgore = false;
 
     //是否对称绘制人脸追踪框
     protected boolean mIsReverseFrame = false;
+
+    public int getMAXIngoreNum() {
+        return mMAXIngoreNum;
+    }
+
+    public void setMAXIngoreNum(int MAXIngoreNum) {
+        mMAXIngoreNum = MAXIngoreNum;
+    }
 
     public boolean isReverseFrame() {
         return mIsReverseFrame;
@@ -160,7 +170,7 @@ public abstract class BaseCameraView extends RelativeLayout {
         mFaceDetecter.init(new FaceDetecter.FaceDetecterCallback() {
             @Override
             public void getFaceLocation(RectF rectF) {
-                if (mIngoreNum < 2 && mIsOpenIgore){
+                if (mIngoreNum < mMAXIngoreNum && mIsOpenIgore){
                     mIngoreNum++;
                     return;
                 }
@@ -191,7 +201,7 @@ public abstract class BaseCameraView extends RelativeLayout {
 
             @Override
             public void getFace(Bitmap bitmap, Bitmap pribitmap) {
-                if (mIngoreNum < 2 && mIsOpenIgore){
+                if (mIngoreNum < mMAXIngoreNum && mIsOpenIgore){
                     return;
                 }
                 if (mFrameDraw == null) {

@@ -3,7 +3,7 @@
   <groupId>com.grg</groupId>
   <artifactId>lib_grgface_release</artifactId>
   <versioning>
-    <release>1.3.9</release>
+    <release>1.4.0</release>
     <versions>
       <version>1.0.0</version>
       <version>1.0.1</version>
@@ -44,7 +44,8 @@
       <version>1.3.7</version>
       <version>1.3.8</version>
       <version>1.3.9</version>
+      <version>1.4.0</version>
     </versions>
-    <lastUpdated>20190723052527</lastUpdated>
+    <lastUpdated>20190723053725</lastUpdated>
   </versioning>
 </metadata>
