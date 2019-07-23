@@ -48,7 +48,7 @@ public class SingleFaceCameraView extends BaseCameraView{
         if (mIsCheckLiving){
             setMAXIngoreNum(3);
         }else {
-            setMAXIngoreNum(5);
+            setMAXIngoreNum(4);
         }
         super.openCamera(cameraID,width,height);
         mCameraVtv.startPreview(cameraID, width, height);
