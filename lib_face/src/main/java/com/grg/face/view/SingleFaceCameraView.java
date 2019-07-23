@@ -44,7 +44,7 @@ public class SingleFaceCameraView extends BaseCameraView{
 
     @Override
     protected void openCamera(int cameraID, int width, int height) {
-        setOpenIgore(true);
+        setOpenIgore(false);
         if (mIsCheckLiving){
             setMAXIngoreNum(3);
         }else {
