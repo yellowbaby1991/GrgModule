@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.RectF;
-import android.hardware.Camera;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -12,7 +11,6 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.aibee.auth.AibeeAuth;
-import com.grg.face.R;
 import com.grg.face.callback.FaceCheckCallback;
 import com.grg.face.core.FaceDetecter;
 
@@ -45,10 +43,21 @@ public abstract class BaseCameraView extends RelativeLayout {
     protected String mGifPath;
 
     //丢弃前两帧废数据
-    protected int ingoreNum = 0;
+    protected int mIngoreNum = 0;
 
     //是否丢弃前两帧废数据
-    protected boolean isOpenIgore = false;
+    protected boolean mIsOpenIgore = false;
+
+    //是否对称绘制人脸追踪框
+    protected boolean mIsReverseFrame = false;
+
+    public boolean isReverseFrame() {
+        return mIsReverseFrame;
+    }
+
+    public void setReverseFrame(boolean reverseFrame) {
+        mIsReverseFrame = reverseFrame;
+    }
 
     public BaseCameraView(Context context) {
         this(context, null);
@@ -152,7 +161,7 @@ public abstract class BaseCameraView extends RelativeLayout {
         mFaceDetecter.init(new FaceDetecter.FaceDetecterCallback() {
             @Override
             public void getFaceLocation(RectF rectF) {
-                if (ingoreNum < 2 && isOpenIgore){
+                if (mIngoreNum < 2 && mIsOpenIgore){
                     return;
                 }
                 if (mFrameDraw == null) {
@@ -162,9 +171,12 @@ public abstract class BaseCameraView extends RelativeLayout {
                     int cameraWidth = mWidth;//相机分辨率宽
                     int width = getWidth();//控件实际物理宽
                     float rate = (float) width / (float) cameraWidth;
-                    RectF temp = new RectF(width - rectF.right * rate, rectF.top * rate, width - rectF.left * rate, rectF.bottom * rate);
-                    //RectF temp = new RectF(rectF.right * rate, rectF.top * rate, rectF.left * rate, rectF.bottom * rate);
-                    //mFrameDraw.drawBoundingBox(temp, 1, Color.WHITE);
+                    RectF temp;
+                    if (mIsReverseFrame){
+                        temp = new RectF(width - rectF.right * rate, rectF.top * rate, width - rectF.left * rate, rectF.bottom * rate);
+                    }else {
+                        temp = new RectF(rectF.right * rate, rectF.top * rate, rectF.left * rate, rectF.bottom * rate);
+                    }
                     if (TextUtils.isEmpty(mGifPath)) {
                         mFrameDraw.drawBoundingBox(temp, 1, Color.WHITE);
                     } else {
@@ -179,8 +191,8 @@ public abstract class BaseCameraView extends RelativeLayout {
 
             @Override
             public void getFace(Bitmap bitmap, Bitmap pribitmap) {
-                if (ingoreNum < 2 && isOpenIgore){
-                    ingoreNum++;
+                if (mIngoreNum < 2 && mIsOpenIgore){
+                    mIngoreNum++;
                     return;
                 }
                 if (mFrameDraw == null) {
@@ -239,11 +251,11 @@ public abstract class BaseCameraView extends RelativeLayout {
     }
 
     public boolean isOpenIgore() {
-        return isOpenIgore;
+        return mIsOpenIgore;
     }
 
     public void setOpenIgore(boolean openIgore) {
-        isOpenIgore = openIgore;
+        mIsOpenIgore = openIgore;
     }
 
     public void stopCameraView(){
