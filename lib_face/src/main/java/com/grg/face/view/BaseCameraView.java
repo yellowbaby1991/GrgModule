@@ -42,31 +42,31 @@ public abstract class BaseCameraView extends RelativeLayout {
     //gif路径，如果没有则默认画框
     protected String mGifPath;
 
-    //丢弃画框前两帧废数据
+ /*   //丢弃画框前两帧废数据
     private int mIngoreNum = 0;
 
     //画框时候丢弃的最大帧数
     protected int mMAXIngoreNum = 2;
 
     //是否丢弃画框废数据
-    protected boolean mIsOpenIgore = false;
+    protected boolean mIsOpenIgore = false;*/
 
     //是否对称绘制人脸追踪框
     protected boolean mIsReverseFrame = false;
 
-    //是否丢弃获取人脸废数据
+  /*  //是否丢弃获取人脸废数据
     protected boolean mIsOpenIgoreGetFace = false;
 
     //获取人脸时候丢弃的最大帧数
-    protected int mIngoreNumGetFace = 0;
+    protected int mIngoreNumGetFace = 0;*/
 
-    public int getMAXIngoreNum() {
+   /* public int getMAXIngoreNum() {
         return mMAXIngoreNum;
     }
 
     public void setMAXIngoreNum(int MAXIngoreNum) {
         mMAXIngoreNum = MAXIngoreNum;
-    }
+    }*/
 
     public boolean isReverseFrame() {
         return mIsReverseFrame;
@@ -177,10 +177,10 @@ public abstract class BaseCameraView extends RelativeLayout {
         mFaceDetecter.init(new FaceDetecter.FaceDetecterCallback() {
             @Override
             public void getFaceLocation(RectF rectF) {
-                if (mIngoreNum < mMAXIngoreNum && mIsOpenIgore){
+                /*if (mIngoreNum < mMAXIngoreNum && mIsOpenIgore){
                     mIngoreNum++;
                     return;
-                }
+                }*/
                 if (mFrameDraw == null) {
                     return;
                 }
@@ -208,13 +208,13 @@ public abstract class BaseCameraView extends RelativeLayout {
 
             @Override
             public void getFace(Bitmap bitmap, Bitmap pribitmap) {
-                if (mIngoreNum < mMAXIngoreNum && mIsOpenIgore){
+              /*  if (mIngoreNum < mMAXIngoreNum && mIsOpenIgore){
                     return;
                 }
                 if (mIngoreNumGetFace < 2 && mIsOpenIgoreGetFace){
                     mIngoreNumGetFace++;
                     return;
-                }
+                }*/
                 if (mFrameDraw == null) {
                     return;
                 }
@@ -270,19 +270,19 @@ public abstract class BaseCameraView extends RelativeLayout {
         mGifPath = gifPath;
     }
 
-    public boolean isOpenIgore() {
+    /*public boolean isOpenIgore() {
         return mIsOpenIgore;
     }
 
     public void setOpenIgore(boolean openIgore) {
         mIsOpenIgore = openIgore;
-    }
+    }*/
 
     public void stopCameraView(){
         mFrameDraw.clearDraw();
     }
 
-    public boolean isOpenIgoreGetFace() {
+    /*public boolean isOpenIgoreGetFace() {
         return mIsOpenIgoreGetFace;
     }
 
@@ -296,5 +296,5 @@ public abstract class BaseCameraView extends RelativeLayout {
 
     public void setIngoreNumGetFace(int ingoreNumGetFace) {
         mIngoreNumGetFace = ingoreNumGetFace;
-    }
+    }*/
 }

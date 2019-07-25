@@ -95,10 +95,19 @@ public class FrameDraw extends SurfaceView implements SurfaceHolder.Callback {
             canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
             canvas.save();
             //计算缩放比例
-            zoom = (rectF.right - rectF.left) / gifWidth;
+            if (rectF.left > rectF.right){
+                zoom = (rectF.left - rectF.right) / gifWidth;
+            }else {
+                zoom = (rectF.right - rectF.left) / gifWidth;
+            }
             canvas.scale(zoom, zoom);
             //设置画布
-            movie.draw(canvas, rectF.left / zoom, rectF.top / zoom);
+            if (rectF.left > rectF.right){
+                movie.draw(canvas, rectF.right / zoom, rectF.top / zoom);
+            }else {
+                movie.draw(canvas, rectF.left / zoom, rectF.top / zoom);
+            }
+
             //逐帧绘制图片
             //这里使用时间戳 与总帧数 求余操作，这样 随着时间的推移计算出该播放哪一帧
             movie.setTime((int) (System.currentTimeMillis() % movie.duration()));
