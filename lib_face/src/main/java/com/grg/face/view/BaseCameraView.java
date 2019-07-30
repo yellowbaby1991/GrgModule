@@ -228,6 +228,9 @@ public abstract class BaseCameraView extends RelativeLayout {
                 if (mFrameDraw == null) {
                     return;
                 }
+                if (mFaceCheckCallback != null){
+                    mFaceCheckCallback.loseFace();
+                }
                 mFrameDraw.clearDraw();
             }
         }, getContext());
