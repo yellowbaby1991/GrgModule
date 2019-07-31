@@ -15,6 +15,10 @@
  */
 package com.lib.common.utils;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -42,6 +46,17 @@ public class NetUtils {
      */
     public static boolean isIPv4Address(String input) {
         return IPV4_PATTERN.matcher(input).matches();
+    }
+
+    public static boolean isNetWorkAvailable(Context context) {
+        boolean isAvailable = false;
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isAvailable()) {
+            isAvailable = true;
+        }
+        return isAvailable;
+
     }
 
     /**
