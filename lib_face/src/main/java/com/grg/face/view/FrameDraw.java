@@ -56,15 +56,20 @@ public class FrameDraw extends SurfaceView implements SurfaceHolder.Callback {
                 canvas.drawPaint(paint);
             }
             sh.unlockCanvasAndPost(canvas);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
     public void drawBoundingBox(RectF rectF, int lineWidth, int color) {
+        drawBoundingBox(rectF, lineWidth, color, 0);
+    }
+
+    public void drawBoundingBox(RectF rectF, int lineWidth, int color, int rotate) {
         try {
             Canvas canvas = sh.lockCanvas();
+            canvas.rotate(rotate, canvas.getWidth() / 2, canvas.getHeight() / 2);
             canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
             Paint paint = new Paint();
             paint.setStrokeWidth(lineWidth);
@@ -72,7 +77,7 @@ public class FrameDraw extends SurfaceView implements SurfaceHolder.Callback {
             paint.setStyle(Paint.Style.STROKE);//设置空心
             canvas.drawRect(rectF, paint);
             sh.unlockCanvasAndPost(canvas);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -86,25 +91,26 @@ public class FrameDraw extends SurfaceView implements SurfaceHolder.Callback {
     private int gifWidth;
 
     //绘制GIF
-    public void drawGif(RectF rectF, String path) {
+    public void drawGif(RectF rectF, String path, int rotate) {
         if (movie == null) {
             initGif(path);
         }
         try {
             Canvas canvas = sh.lockCanvas();
+            canvas.rotate(rotate, canvas.getWidth() / 2, canvas.getHeight() / 2);
             canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
             canvas.save();
             //计算缩放比例
-            if (rectF.left > rectF.right){
+            if (rectF.left > rectF.right) {
                 zoom = (rectF.left - rectF.right) / gifWidth;
-            }else {
+            } else {
                 zoom = (rectF.right - rectF.left) / gifWidth;
             }
             canvas.scale(zoom, zoom);
             //设置画布
-            if (rectF.left > rectF.right){
+            if (rectF.left > rectF.right) {
                 movie.draw(canvas, rectF.right / zoom, rectF.top / zoom);
-            }else {
+            } else {
                 movie.draw(canvas, rectF.left / zoom, rectF.top / zoom);
             }
 
@@ -114,9 +120,14 @@ public class FrameDraw extends SurfaceView implements SurfaceHolder.Callback {
             // 恢复之前保存的状态
             canvas.restore();
             sh.unlockCanvasAndPost(canvas);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    //绘制GIF
+    public void drawGif(RectF rectF, String path) {
+        drawGif(rectF, path, 0);
     }
 
     //加载gif

@@ -84,5 +84,10 @@ public class TwoFaceCameraView extends BaseCameraView{
         mFaceDetecter.release();
     }
 
-
+    @Override
+    public void setCameraRotate(int cameraRotate) {
+        super.setCameraRotate(cameraRotate);
+        mCameraVtv1.setRotation(-cameraRotate);
+        mCameraVtv2.setRotation(-cameraRotate);
+    }
 }

@@ -44,12 +44,6 @@ public class SingleFaceCameraView extends BaseCameraView{
 
     @Override
     protected void openCamera(int cameraID, int width, int height) {
-       /* setOpenIgore(false);
-        if (mIsCheckLiving){
-            setMAXIngoreNum(3);
-        }else {
-            setMAXIngoreNum(4);
-        }*/
         super.openCamera(cameraID,width,height);
         mCameraVtv.startPreview(cameraID, width, height);
     }
@@ -65,6 +59,12 @@ public class SingleFaceCameraView extends BaseCameraView{
 
             }
         });
+    }
+
+    @Override
+    public void setCameraRotate(int cameraRotate) {
+        super.setCameraRotate(cameraRotate);
+        mCameraVtv.setRotation(-cameraRotate);
     }
 
     @Override

@@ -28,18 +28,16 @@ public class FaceActivity extends AppCompatActivity {
 
         mCameraTextureView = findViewById(R.id.cv);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mCameraTextureView.startPreview(0);
-            }
-        },2000);
-
         ToastUtils.show(FaceAuth.getDeviceId(this));
 
-        String deviceId = FaceAuth.getDeviceId(this);//ffffffff-cdb6-cfea-0033-c5870033c587
-        String license = "4D5697C772B9D04A227FA452B4BEE4464E53FDC684951A4261570FD61E03F5BC07CF7D7F17B0B443647E8AD297F25BC53B606E0C3D986A3609218BC6485D659CC72C024AA1FB8C68D59F07D4E2327CBB53D50E1D43EA74160E54AACCDD9025CFC3EB3F58DA4BB44003CAD535BB1A970626D6B95890139600D2D4FE571E1425AD";
-        license = "2B63DE0C21DD9092A99C716B60FA8B2D803242390DEE2A2BCEEB5FA6CD5EF9B5F78DFC3A4A3C8D43D181594261337716C4BD89CAC4BD5D7ABFA732E6A301050AFA64BA7B07B0D25371654AA1D70145EEED2B03E1D9DAA0FB06C9A6DD69E5FB9CB3279D2FDC0BD5EDE037A259A302790A2CA8BF86F519ED40A050A6D578946DCC";
+        String deviceId = FaceAuth.getDeviceId(this);//00000000-1e3a-f049-0033-c5870033c587
+        String license = "";
+        if (deviceId.equals("00000000-1e3a-f049-0033-c5870033c587")){
+            license = "1B85B44D439FAF13D4C6701C7C1120D865F54EF87942F037D5DE0CCE6475B702D5F6666D3BAFCB3FE3AB8DFDDA004191C3D3C360470E4CA8E36F289D3A448901C2CE984758D2683C75913A1CA0E74F859776DF5C2382D2E0DA4ACBCB5CE65F389D38D493F4F3DC4C33F4B3C68DE99A8BDB173E875E2C3F1963F98DCB6B6BAAC3";
+        }
+        if (deviceId.equals("00000000-0388-a85f-d49c-30a80033c587")){
+            license = "12F1F0475EF4B552C85F9928AB8DC7D44F67EFBCC5625E3E50D7EA84AACCE247C3864AEADE524653E1F24991CE7E674757A6B04629F925B29C1B82D06444AACFC4C478E53AF5297CCCB401B5ABC58ED59B509EBA734E7DCFA6F2BFFBA0BDDC9CCDB00CCA7518234983160BD8BA91157279F884CEC36AA186C61D7A19CF9CEAAC";
+        }
 
         FaceAuth.authByLocal(this, license, new FaceAuth.AuthCallBack() {
             @Override
@@ -53,12 +51,12 @@ public class FaceActivity extends AppCompatActivity {
             }
         });
 
-      /*  new Handler().postDelayed(new Runnable() {
+        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 singefacecameraview(null);
             }
-        }, 1000);*/
+        }, 1000);
 
         ARouter.getInstance().inject(this);
 
@@ -78,9 +76,8 @@ public class FaceActivity extends AppCompatActivity {
     }
 
     public void singleCamera(View view) {
-       /* Intent intent = new Intent(this, SingleCameraActivity.class);
-        startActivity(intent);*/
-        finish();
+        /*Intent intent = new Intent(this, SingleFaceCameraViewActivity.class);
+        finish();*/
     }
 
     public void livingCamera(View view) {

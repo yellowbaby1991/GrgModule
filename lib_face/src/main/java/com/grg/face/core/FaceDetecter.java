@@ -197,8 +197,12 @@ public class FaceDetecter {
                         Bitmap bitmap = BitmapFactory.decodeByteArray(yuv, 0, yuv.length);
                         Bitmap pribitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_4444);
                         pribitmap.setPixels(pridata, 0, width, 0, 0, width, height);
-                        bitmap = mirrorConvert(bitmap, 0);
-                        pribitmap = mirrorConvert(pribitmap, 0);
+                        /*bitmap = mirrorConvert(bitmap, 0);
+                        pribitmap = mirrorConvert(pribitmap, 0);*/
+                        if (cameraRotate != 0) {
+                            bitmap = adjustPhotoRotation(bitmap,-cameraRotate);
+                            pribitmap= adjustPhotoRotation(pribitmap,-cameraRotate);
+                        }
                         compareCallback.getFace(bitmap, pribitmap);
                         //Log.e("TAG", "====活体==========================================");
                     }
@@ -240,16 +244,19 @@ public class FaceDetecter {
                         if (top + h > pribitmap.getHeight()) {
                             h = pribitmap.getHeight() - top;
                         }
-                        if (h <= 0 || w <= 0){
+                        if (h <= 0 || w <= 0) {
                             compareCallback.loseFace();
                         }
                         try {
                             Bitmap bitmap = Bitmap.createBitmap(pribitmap, left, top, w, h);
-                            bitmap = mirrorConvert(bitmap, 0);
-                            pribitmap = mirrorConvert(pribitmap, 0);
+                            /*bitmap = mirrorConvert(bitmap, 0);
+                            pribitmap = mirrorConvert(pribitmap, 0);*/
+                            if (cameraRotate != 0) {
+                                bitmap = adjustPhotoRotation(bitmap,-cameraRotate);
+                                pribitmap= adjustPhotoRotation(pribitmap,-cameraRotate);
+                            }
                             compareCallback.getFace(bitmap, pribitmap);
-                        }
-                        catch (Exception e){
+                        } catch (Exception e) {
                             compareCallback.loseFace();
                             e.printStackTrace();
                         }
@@ -336,6 +343,18 @@ public class FaceDetecter {
         return Bitmap.createBitmap(srcBitmap, 0, 0, srcBitmap.getWidth(), srcBitmap.getHeight(), matrix, true);
     }
 
+    private Bitmap adjustPhotoRotation(Bitmap bm, final int orientationDegree) {
+        Matrix m = new Matrix();
+        m.setRotate(orientationDegree, (float) bm.getWidth() / 2, (float) bm.getHeight() / 2);
+        try {
+            Bitmap bm1 = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(), bm.getHeight(), m, true);
+            return bm1;
+
+        } catch (OutOfMemoryError ex) {
+        }
+        return null;
+    }
+
     public void release() {
         mSemaphore.release();
         working = false;
@@ -345,13 +364,15 @@ public class FaceDetecter {
 
         /**
          * 返回人脸坐标，用于画框
+         *
          * @param faceRect
          */
         void getFaceLocation(RectF faceRect);
 
         /**
          * 返回人脸图和原图
-         * @param bitmap 人脸图
+         *
+         * @param bitmap    人脸图
          * @param pribitmap 原图
          */
         void getFace(Bitmap bitmap, Bitmap pribitmap);

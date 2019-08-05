@@ -3,15 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.grg.face.view.SingleFaceCameraView
-        android:id="@+id/camera_view"
-        android:layout_width="800dp"
-        android:layout_height="640dp">
-    </com.grg.face.view.SingleFaceCameraView>
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:id="@+id/ll_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/face_iv"

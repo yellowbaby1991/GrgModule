@@ -6,7 +6,11 @@ import android.graphics.RectF;
 import android.os.Bundle;
 import android.os.Process;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.grg.face.callback.FaceCheckCallback;
 import com.grg.face.core.FaceAuth;
@@ -21,6 +25,8 @@ public class SingleFaceCameraViewActivity extends AppCompatActivity {
     private ImageView mFaceIv, mImageView;
 
     private SingleFaceCameraView mFaceCheckCameraView;
+
+    private LinearLayout mLinearLayout;
 
     private FaceCheckCallback mFaceCheckCallback = new FaceCheckCallback() {
 
@@ -42,7 +48,13 @@ public class SingleFaceCameraViewActivity extends AppCompatActivity {
 
         @Override
         public void loseFace() {
-
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mFaceIv.setImageBitmap(null);
+                    mImageView.setImageBitmap(null);
+                }
+            });
         }
     };
 
@@ -51,12 +63,24 @@ public class SingleFaceCameraViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_singleface_cameraview);
 
-        mFaceCheckCameraView = findViewById(R.id.camera_view);
+
+        DisplayMetrics dm = getResources().getDisplayMetrics();
+        mLinearLayout = findViewById(R.id.ll_container);
+        mFaceCheckCameraView = new SingleFaceCameraView(getApplicationContext());
+        int heigth = dm.widthPixels;
+        int width = heigth * 640 / 480;
+
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(width, heigth);
+        layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+        mFaceCheckCameraView.setLayoutParams(layoutParams);
+        //mFaceCheckCameraView.setCameraRotate(270);
         mFaceCheckCameraView.setGifPath("frame.gif");
         mFaceIv = findViewById(R.id.face_iv);
         mImageView = findViewById(R.id.img_iv);
 
+        mLinearLayout.addView(mFaceCheckCameraView);
         mFaceCheckCameraView.startPreview(0, 640, 480);
+
         mFaceCheckCameraView.setFaceCheckCallback(mFaceCheckCallback);
     }
 

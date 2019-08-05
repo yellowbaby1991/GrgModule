@@ -8,11 +8,13 @@
     android:layout_height="match_parent">
 
     <com.grg.face.view.CameraTextureView
+        android:visibility="gone"
         android:id="@+id/cv"
         android:layout_width="640dp"
         android:layout_height="480dp"/>
 
     <Button
+        android:visibility="gone"
         android:layout_margin="30dp"
         android:textSize="20dp"
         android:onClick="singleCamera"
@@ -29,6 +31,7 @@
         android:layout_height="wrap_content"/>
 
     <Button
+        android:visibility="gone"
         android:layout_margin="30dp"
         android:textSize="20dp"
         android:onClick="twofaceCheckCamera"
