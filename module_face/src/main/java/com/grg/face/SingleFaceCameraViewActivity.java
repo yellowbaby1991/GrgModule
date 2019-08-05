@@ -14,7 +14,9 @@ import android.widget.RelativeLayout;
 
 import com.grg.face.callback.FaceCheckCallback;
 import com.grg.face.core.FaceAuth;
+import com.grg.face.view.BaseCameraView;
 import com.grg.face.view.SingleFaceCameraView;
+import com.grg.face.view.TwoFaceCameraView;
 
 
 /**
@@ -23,8 +25,6 @@ import com.grg.face.view.SingleFaceCameraView;
 public class SingleFaceCameraViewActivity extends AppCompatActivity {
 
     private ImageView mFaceIv, mImageView;
-
-    private SingleFaceCameraView mFaceCheckCameraView;
 
     private LinearLayout mLinearLayout;
 
@@ -66,20 +66,21 @@ public class SingleFaceCameraViewActivity extends AppCompatActivity {
 
         DisplayMetrics dm = getResources().getDisplayMetrics();
         mLinearLayout = findViewById(R.id.ll_container);
-        mFaceCheckCameraView = new SingleFaceCameraView(getApplicationContext());
+        BaseCameraView mFaceCheckCameraView = new TwoFaceCameraView(getApplicationContext());
         int heigth = dm.widthPixels;
         int width = heigth * 640 / 480;
 
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(width, heigth);
         layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);
         mFaceCheckCameraView.setLayoutParams(layoutParams);
+        //mFaceCheckCameraView.setCheckLiving(true);
         //mFaceCheckCameraView.setCameraRotate(270);
         mFaceCheckCameraView.setGifPath("frame.gif");
         mFaceIv = findViewById(R.id.face_iv);
         mImageView = findViewById(R.id.img_iv);
 
         mLinearLayout.addView(mFaceCheckCameraView);
-        mFaceCheckCameraView.startPreview(0, 640, 480);
+        mFaceCheckCameraView.startTwoPreview(0,1, 640, 480);
 
         mFaceCheckCameraView.setFaceCheckCallback(mFaceCheckCallback);
     }

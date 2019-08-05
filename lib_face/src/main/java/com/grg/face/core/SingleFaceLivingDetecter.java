@@ -36,6 +36,7 @@ public class SingleFaceLivingDetecter extends FaceDetecter {
                 mTracker.setIsCheckMouthOpen(true, 0.2f);
                 mTracker.setIsCheckEyeClose(true, 0.3f);
                 mTracker.setThreadNum(1);      // Set the number of threads to use
+                mTracker.setFaceOrientation(cameraRotate);
             }
         }
     }
