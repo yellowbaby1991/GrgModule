@@ -9,7 +9,7 @@ targetCompatibility = "1.7"
 
 apply plugin: 'maven'
 
-def coreAarFile = file('libs/faceSDK-release.aar')
+def coreAarFile = file('libs/auth-release.aar')
 
 artifacts {
     archives coreAarFile
