@@ -85,7 +85,7 @@ dependencies {
 
     /*api(name: 'faceSDK-release', ext: 'aar')
     api(name: 'auth-release', ext: 'aar')*/
-    api 'com.grg:lib_faceSDK:1.0.1@aar'
+    api 'com.grg:lib_faceSDK:1.0.2@aar'
     api 'com.grg:lib_auth:1.0.0@aar'
 
 
