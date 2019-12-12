@@ -54,6 +54,9 @@ public class CameraTextureView extends TextureView {
 
     public void setOnPreviewCallback(OnPreviewCallback onPreviewCallback) {
         mOnPreviewCallback = onPreviewCallback;
+        if (mCamera !=null){
+            mCamera.setPreviewCallback(mPreviewCallback);
+        }
     }
 
     public interface OnPreviewCallback {
@@ -129,6 +132,15 @@ public class CameraTextureView extends TextureView {
 
         });
 
+    }
+
+    public void startPreview(){
+        mCamera.startPreview();
+    }
+
+    public void stopPreview(){
+        mCamera.stopPreview();
+        mCamera.setPreviewCallback(null);
     }
 
     public void stopCamera() {

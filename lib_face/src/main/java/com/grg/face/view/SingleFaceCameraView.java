@@ -88,6 +88,17 @@ public class SingleFaceCameraView extends BaseCameraView{
         return mCameraVtv;
     }
 
+    public void startPreview(){
+        getCameraVtv().startPreview();
+        setDecterToCamera();
+    }
+
+    public void stopPreview(){
+        getCameraVtv().stopPreview();
+        mFrameDraw.clearDraw();
+    };
+
+
     public void stopCameraView(){
         super.stopCameraView();
         mCameraVtv.stopCamera();
