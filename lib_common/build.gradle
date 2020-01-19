@@ -73,6 +73,7 @@ dependencies {
 
     api(rootProject.ext.dependencies.leak)
     api(rootProject.ext.dependencies.block)
+    api 'com.orhanobut:logger:2.2.0'
 
     annotationProcessor rootProject.ext.dependencies.arouter_compiler
 }

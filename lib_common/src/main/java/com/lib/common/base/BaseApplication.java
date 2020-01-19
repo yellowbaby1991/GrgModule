@@ -3,6 +3,7 @@ package com.lib.common.base;
 import android.app.Application;
 import android.os.Handler;
 import android.os.Looper;
+import android.speech.tts.TextToSpeech;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -14,11 +15,14 @@ import com.lib.common.crash.ExceptionHandler;
 import com.lib.common.http.HttpHelper;
 import com.lib.common.http.processor.VolleyProcessor;
 import com.lib.common.log.GrgLog;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
 import com.squareup.leakcanary.LeakCanary;
 import com.xuexiang.xui.XUI;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import xcrash.XCrash;
 
@@ -30,7 +34,7 @@ import xcrash.XCrash;
  * 4）集成阿里路由
  */
 
-public class BaseApplication extends Application {
+public class BaseApplication extends Application implements TextToSpeech.OnInitListener{
 
     public static String BASE_PATH = android.os.Environment.getExternalStorageDirectory().getPath() + "/";
 
@@ -38,20 +42,40 @@ public class BaseApplication extends Application {
 
     private static BaseApplication instance;
 
+    private static TextToSpeech tts;
+
     @Override
     public void onCreate() {
         super.onCreate();
 
         instance = this;
 
+        initSpeekUtils();
         installBlockCanary();
         installLeakCanary();
         initXCrash();
         initHttpHelper();
         initRouter();
         initGrgLog();
+        initLogger();
         initXui();
 
+    }
+
+    protected void initLogger() {
+/*        FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
+                .showThreadInfo(true)  // ( Optional) Whether to show thread info or not. Default true
+                .methodCount(2)         // (Optional) How many method line to show. Default 2
+                .methodOffset(5)        // (Optional) Hides internal method calls up to offset. Default 5
+                .logStrategy(new LogcatLogStrategy())
+                .tag("GrgLog")   // (Optional) Global tag for every log. Default PRETTY_LOGGER
+                .build();*/
+        Logger.addLogAdapter(new AndroidLogAdapter());
+        //Logger.addLogAdapter(new DiskLogAdapter());
+    }
+
+    private void initSpeekUtils() {
+        tts = new TextToSpeech(this, this);
     }
 
     //用于检测内存异常
@@ -164,5 +188,23 @@ public class BaseApplication extends Application {
     //用于捕获崩溃日志，和CrashRoach会冲突
     protected void initXCrash(){
         XCrash.init(this, new XCrash.InitParameters().setLogDir(BASE_PATH + getLogPath() + "/crash/" + new SimpleDateFormat(GrgLog.DATE_FORMAT).format(new Date())));
+    }
+
+    @Override
+    public void onInit(int status){
+        // 判断是否转化成功
+        if (status == TextToSpeech.SUCCESS){
+            //默认设定语言为中文，原生的android貌似不支持中文。
+            int result = tts.setLanguage(Locale.CHINESE);
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED){
+            }else{
+                //不支持中文就将语言设置为英文
+                tts.setLanguage(Locale.US);
+            }
+        }
+    }
+
+    public static TextToSpeech getTts() {
+        return tts;
     }
 }
